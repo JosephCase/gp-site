@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-import ActivePageContent from './components/activePageContent.js';
+import ActivePageContent from './containers/ActivePageContent.js';
 // import logo from './logo.svg';
 // import './App.css';
 

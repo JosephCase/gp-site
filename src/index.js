@@ -15,26 +15,28 @@ import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
 import { fetchPage } from './actions/actions.js'
-import { contentByPage } from './reducers/reducers.js'
+import reducers from './reducers/reducers.js'
 
 const HOMEPATH = '/works'
 
 const store = createStore(
-	contentByPage,
+	reducers,
 	applyMiddleware(thunkMiddleware)
 )
 
-const history = createHistory();
-const unlisten = history.listen((location, action) => {
-	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
 
+function historyListener(location) {
+	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
 	store.dispatch(fetchPage(newPath)).then(() => {
 		console.log(store.getState());
-	});
-})
+	});	
+}
 
-let newPath = history.location.pathname === '/' ? HOMEPATH : history.location.pathname;
-store.dispatch(fetchPage(newPath));
+const history = createHistory();
+
+const unlisten = history.listen(historyListener)
+historyListener(history.location)
+
 
 ReactDOM.render(
 	<Provider store={store}>

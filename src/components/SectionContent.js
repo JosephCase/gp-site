@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SectionContent = ({ content }) => {
+const SectionContent = ({ pages }) => {
 
-	let pages = content.map((page) => {
+	let pageElements = pages.map((page) => {
 		let mainImage = '';
 		if (page.mainImage_url) {
 			mainImage = `http://localhost:8081/content/${page.mainImage_url.replace('.jpg', '_x500.jpg')}`;
@@ -19,7 +19,7 @@ const SectionContent = ({ content }) => {
 	return (
 		<div className='section'>
 			<h1>Section</h1>
-			<div>{ pages }</div>
+			<div>{ pageElements }</div>
 		</div>
 	);
 }

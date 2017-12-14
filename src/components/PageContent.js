@@ -2,7 +2,7 @@ import React from 'react';
 
 const PageContent = ({ content }) => {
 
-	let contents = content.map((element) => {
+	let contentElements = content.map((element) => {
 		switch(element.type) {
 			case 'text':
 				return <Text key={element.id} {...element} />
@@ -17,7 +17,7 @@ const PageContent = ({ content }) => {
 	return (
 		<div className='page'>
 			<h1>Page</h1>
-			<div>{ contents }</div>
+			<div>{ contentElements }</div>
 		</div>
 	);
 }

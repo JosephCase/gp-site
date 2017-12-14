@@ -1,25 +1,40 @@
-import { REQUEST_CONTENT, RECIEVE_CONTENT } from '../actions/actions.js'
+import { combineReducers } from 'redux'
+import { REQUEST_CONTENT, RECIEVE_CONTENT, RECIEVE_CONTENT_ERROR } from '../actions/actions.js';
 
-export function contentByPage(state = {}, action) {
+
+function activePage(state = {}, action) {
 	switch(action.type) {
 		case REQUEST_CONTENT:
 			return Object.assign({}, state, {
-				activePath: action.pagePath,
-				[action.pagePath]: {
-					isFetching: true,
-					type: null,
-					content: []
-				}
-			})
+				isFetching: true,
+				path: action.pagePath,
+				error: null
+			});
 		case RECIEVE_CONTENT:
 			return Object.assign({}, state, {
-				[action.pagePath]: {
-					isFetching: false,
-					type: action.page.type,
-					content: action.page.pages ? action.page.pages : action.page.content
-				}
+				isFetching: false
+			})
+		case RECIEVE_CONTENT_ERROR:
+			return Object.assign({}, state, {
+				isFetching: false,
+				error: {code: action.statusCode, message: action.message}
 			})
 		default:
 			return state
 	}
 }
+
+function pages(state = {}, action) {
+	switch(action.type) {
+		case RECIEVE_CONTENT:
+			return Object.assign({}, state, {					
+				[action.pagePath]: action.page
+			})
+		default:
+			return state
+	}
+}
+
+export default combineReducers({
+	activePage, pages
+})

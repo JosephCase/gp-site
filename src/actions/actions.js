@@ -1,5 +1,6 @@
 export const REQUEST_CONTENT = 'REQUEST_CONTENT';
 export const RECIEVE_CONTENT = 'RECIEVE_CONTENT';
+export const RECIEVE_CONTENT_ERROR = 'RECIEVE_CONTENT_ERROR';
 
 function requestContent(pagePath) {
 	return {
@@ -16,6 +17,13 @@ function receivePageContent(pagePath, page) {
 	}
 }
 
+function receivePageContent_error(err) {
+	return {
+		type: RECIEVE_CONTENT_ERROR,
+		error: err
+	}
+}
+
 export function fetchPage(pagePath) {
 
 	return (dispatch) => {
@@ -24,11 +32,20 @@ export function fetchPage(pagePath) {
 
 		return fetch(`/api${pagePath}`)
 		.then((res) => {
-			if (!res.ok) return console.log(res.statusText); 
+			if (!res.ok) {
+				throw {
+					statusCode: res.status,
+					message: res.statusText
+				};
+				return;
+			}; 
 			return res.json();
 		})
 		.then((body) => {
 			dispatch(receivePageContent(pagePath, body));
+		})
+		.catch(err => {
+			dispatch(receivePageContent_error(err))
 		})
 	}
 

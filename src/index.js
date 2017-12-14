@@ -1,31 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
 
 
+import createHistory from 'history/createBrowserHistory';
+
+
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 import { fetchPage } from './actions/actions.js'
 import { contentByPage } from './reducers/reducers.js'
 
+const HOMEPATH = '/works'
 
-export const store = createStore(
+const store = createStore(
 	contentByPage,
 	applyMiddleware(thunkMiddleware)
 )
 
+const history = createHistory();
+const unlisten = history.listen((location, action) => {
+	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
+
+	store.dispatch(fetchPage(newPath)).then(() => {
+		console.log(store.getState());
+	});
+})
+
+let newPath = history.location.pathname === '/' ? HOMEPATH : history.location.pathname;
+store.dispatch(fetchPage(newPath));
+
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router history={history}>
 			<App />
-		</BrowserRouter>
+		</Router>
 	</Provider>,
 	document.getElementById('root')
 );
 // registerServiceWorker();
+

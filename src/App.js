@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Header from './sections/header';
-import Footer from './sections/footer';
-import Router from './sections/router';
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
 import ActivePageContent from './components/activePageContent.js';
 // import logo from './logo.svg';
 // import './App.css';
@@ -10,7 +9,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router />
         <Header />
         <ActivePageContent />
         <Footer />

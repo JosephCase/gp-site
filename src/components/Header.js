@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Menu from '../components/menu';
+import VisibleMenu from '../containers/VisibleMenu.js';
 
-class Header extends Component {
-	render() {
-		return (
-			<div className='header'>
-				<h1><Link to=''>Giusy Pirrotta</Link></h1>
-				<Menu />
-			</div>
-		)
-	}
-}
+const Header = () => (
+	<div className='header'>
+		<h1><Link to='/'>Giusy Pirrotta</Link></h1>
+		<VisibleMenu />
+	</div>
+)
 
 export default Header;

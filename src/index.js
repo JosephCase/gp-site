@@ -14,7 +14,7 @@ import './index.css';
 import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-import { fetchPage } from './actions/actions.js'
+import { navigate, fetchNavigation } from './actions/actions.js'
 import reducers from './reducers/reducers.js'
 
 const HOMEPATH = '/works'
@@ -24,10 +24,11 @@ const store = createStore(
 	applyMiddleware(thunkMiddleware)
 )
 
+store.dispatch(fetchNavigation());
 
 function historyListener(location) {
 	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
-	store.dispatch(fetchPage(newPath)).then(() => {
+	store.dispatch(navigate(newPath)).then(() => {
 		console.log(store.getState());
 	});	
 }

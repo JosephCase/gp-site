@@ -1,93 +1,63 @@
 'use strict';
 
-const request = require('request');
+import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter as Router } from 'react-router-dom';
+
+import reducers from '../src/reducers/reducers.js';
+import App from '../src/App.js';
+
 
 const config = require('../config/config.js');
-const routes = require('./routes.js');
+const routeHelper = require('./routeHelper.js');
+const view = require('./view.js');
+const contentService = require('./contentService.js');
 
-exports.getContent = (req, res) => {
+exports.generateContent = () => {
 
-	let path = req.path.replace("/api", "");
-
-	let route = routes.getRouteByPath(path);
-	if(!route) return res.status(404).send();
-
-    if(route.type === config.PAGE) {
-        getPage(route.apiPath).then( content => {
-            res.json(content);
-        })
-        .catch( err => {
-            console.log(err);
-            res.status(500).send();
-        });
-    } else if (route.type === config.SECTION) {
-        getSection(route.apiPath).then( content => {
-            res.json(content);
-        })
-        .catch( err => {
-            console.log(err);
-            res.status(500).send();
-        });
-    } else {
-        console.log(`Unrecognised page type, ${route}`);
-        res.status(500).send();
-    }
+	routeHelper.generateRoutes()
+	.then(() => {
+		contentService.generateNavigation();
+		contentService.generatePages();
+	})
+	.catch(err => {
+		console.log(err);
+	})
 
 }
 
-exports.getNavigation = (req, res) => {
+exports.serveBundle = (req, res) => {
 
-    request.get(`${config.apiHost}/navigation`, (err, api_res, body) => {
-        if(err) {
-            console.log(`Could not get navigation from API, ${err}`);
-            return res.status(500).send();
-        }
+	let preloadedState = {
+		activePage: {
+			isFetching: false,
+			path: req.path === '/' ? config.HOMEPATH : req.path,
+			error: null
+		},
+		navigation: [],
+		pages: {}
+	}
 
-        let links = JSON.parse(body);
-        links.forEach( link => {
-            link.path = routes.getRouteById(link.id).path;
-        })
+	preloadedState.navigation = contentService.getNavigation();
+	preloadedState.pages = contentService.getPages();
 
-        return res.json(links);
-    });
+	const store = createStore(
+		reducers,
+		preloadedState
+	)
 
-}
+	const html = renderToString(
+		<Provider store={store}>
+			<Router>
+				<App />
+			</Router>
+		</Provider>
+	)
 
-function getPage(apiPath) {
+	console.log(store.getState().activePage);
 
-    return new Promise((resolve, reject) => {
+	res.send(view.render(html, store.getState()));
 
-        let reqPath = `${config.apiHost}${apiPath}?embed=content`;
-        request.get(reqPath, (err, api_res, body) => {
-            if(err) {
-                console.log(`Could not get content from API, ${err}`);
-                return reject();
-            }
-            let page = JSON.parse(body);
-            page.type = config.PAGE;
-            return resolve(page);
-        });
-    })
-}
-
-function getSection(apiPath) {
-
-    return new Promise((resolve, reject) => {
-
-        let reqPath = `${config.apiHost}${apiPath}?embed=pages`;
-        request.get(reqPath, (err, api_res, body) => {
-            if(err) {
-                console.log(`Could not get content from API, ${err}`);
-                return reject();
-            }
-
-            let section = JSON.parse(body);
-            section.type = config.SECTION;
-            section.pages.forEach( page => {
-                page.path = routes.getRouteById(page.id).path;
-            })
-
-            return resolve(section);
-        });
-    })
-}
+}	

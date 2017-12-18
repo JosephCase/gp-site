@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 import { Router } from 'react-router-dom';
 
 import thunkMiddleware from 'redux-thunk'
@@ -19,27 +19,24 @@ import reducers from './reducers/reducers.js'
 
 const HOMEPATH = '/works'
 
+const preloadedState = window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__;
+
 const store = createStore(
 	reducers,
+	preloadedState,
 	applyMiddleware(thunkMiddleware)
 )
 
-store.dispatch(fetchNavigation());
-
 function historyListener(location) {
 	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
-	store.dispatch(navigate(newPath)).then(() => {
-		console.log(store.getState());
-	});	
+	store.dispatch(navigate(newPath));
 }
 
 const history = createHistory();
+const unlisten = history.listen(historyListener);
 
-const unlisten = history.listen(historyListener)
-historyListener(history.location)
-
-
-ReactDOM.render(
+hydrate(
 	<Provider store={store}>
 		<Router history={history}>
 			<App />

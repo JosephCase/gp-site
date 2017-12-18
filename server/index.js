@@ -2,11 +2,12 @@
 
 global.appRoute = __dirname;
 
-const app = require('./app.js');
-const routes = require('./routes.js');
 const config = require('../config/config.js');
+const controller = require('./controller.js');
+const app = require('./app.js');
 
-routes.generateRoutes();
+controller.generateContent();
+
 app.listen(config.port, () => {
 
 	console.log(`Express Server started listening to port ${config.port}`);

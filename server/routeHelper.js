@@ -1,22 +1,23 @@
 'use strict';
 
 const request = require('request');
+const cache = require('memory-cache');
 
 const config = require('../config/config.js');
 
-const routes = {};
-var _routes = [];
+const routeHelper = {};
 
-routes.generateRoutes = () => {
- 
-	request.get(`${config.apiHost}/pages`, (err, api_res, body) => {
-		setTimeout(function() {
+routeHelper.generateRoutes = () => {
+
+	return new Promise((resolve, reject) => {
+
+		request.get(`${config.apiHost}/pages`, (err, api_res, body) => {
 
 			if(err || api_res.statusCode != 200) {
-				return console.log(err || JSON.parse(body).message);
+				return reject(err || JSON.parse(body).message);
 			}
 
-			_routes = [];
+			let routes = [];
 
 			let pages = JSON.parse(body);
 			pages.forEach( page => {
@@ -27,29 +28,37 @@ routes.generateRoutes = () => {
 				if(page.parentPage_id) {
 					parentName = getPageName(page.parentPage_id, pages);
 				}
-
 				newRoute.path = createUrl(page.name, parentName);
 
-				_routes.push(newRoute);
+				routes.push(newRoute);
 			});
-		}, 10000)
+
+			cache.put('routes', routes);
+
+			return resolve();
+
+		})
 	})
 }
 
-routes.getRouteById = (id) => {
-	let route = _routes.find((route) => {
+routeHelper.getRouteById = (id) => {
+	let route = routeHelper.getAllRoutes().find((route) => {
 		return route.id === id;
 	});
 	if(!route) return false;
 	return route;
 }
 
-routes.getRouteByPath = (path) => {
-	let route = _routes.find((route) => {
+routeHelper.getRouteByPath = (path) => {
+	let route = routeHelper.getAllRoutes().find((route) => {
 		return route.path === path;
 	});
 	if(!route) return false;
 	return route;
+}
+
+routeHelper.getAllRoutes = () => {
+	return cache.get('routes');
 }
 
 
@@ -76,4 +85,4 @@ function getPageName(id, pages) {
 	return page.name;
 }
 
-module.exports = routes;
+module.exports = routeHelper;

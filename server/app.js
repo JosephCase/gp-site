@@ -1,8 +1,7 @@
 'use strict';
 
-const express = require('express');
-const request = require('request');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
 const controller = require('./controller.js');
 
@@ -15,12 +14,13 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(express.static(path.join(global.appRoute, '../build')));
+app.use('/static', express.static(path.join(global.appRoute, '../build/static/')));
 
-app.get('/api/navigation', controller.getNavigation);
-app.get('/api/*', controller.getContent);
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(global.appRoute, '../build/index.html'));
+// app.get('/api/navigation', controller.getNavigation);
+// app.get('/api/*', controller.getContent);
+
+app.use((req, res) => {
+	if(req.path !== '/favicon.ico') controller.serveBundle(req, res);
 });
 
 module.exports = app;

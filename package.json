@@ -20,7 +20,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "nodemon": "nodemon server/index.js --exec babel-node --presets react,es2015",    
-    "start-server": "babel-node --inspect server/index.js --presets react,es2015"
+    "start-server": "babel-node server/index.js --presets react,es2015"
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {

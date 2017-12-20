@@ -30,22 +30,9 @@ exports.generateContent = () => {
 
 exports.serveBundle = (req, res) => {
 
-	let preloadedState = {
-		activePage: {
-			isFetching: false,
-			path: req.path === '/' ? config.HOMEPATH : req.path,
-			error: null
-		},
-		navigation: [],
-		pages: {}
-	}
-
-	preloadedState.navigation = contentService.getNavigation();
-	preloadedState.pages = contentService.getPages();
-
 	const store = createStore(
 		reducers,
-		preloadedState
+		getInitialState(req.path)
 	)
 
 	const html = renderToString(
@@ -60,4 +47,23 @@ exports.serveBundle = (req, res) => {
 
 	res.send(view.render(html, store.getState()));
 
+}
+
+function getInitialState(reqPath) {
+	let preloadedState = {
+		activePage: {
+			isFetching: false,
+			path: reqPath === '/' ? config.HOMEPATH : reqPath,
+			error: null
+		},
+		navigation: [],
+		pages: {}
+	}
+
+	preloadedState.navigation = contentService.getNavigation();
+	preloadedState.pages = contentService.getPages();
+
+	return preloadedState;
 }	
+
+exports.getInitialState = getInitialState;

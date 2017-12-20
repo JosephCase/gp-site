@@ -1,10 +1,12 @@
 import React from 'react';
 
+import '../css/footer.css';
+
 const Footer = () => (
-	<div className='footer'>
+	<footer>
 		<h5>pirrotta.giusy@gmail.co.uk</h5>
 		<p>Copyright © 2017 Giusy Pirrotta</p>
-	</div>
+	</footer>
 )
 
 export default Footer;

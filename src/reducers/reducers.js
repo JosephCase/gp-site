@@ -3,9 +3,10 @@ import {
 	REQUEST_CONTENT,
 	RECIEVE_CONTENT,
 	RECIEVE_CONTENT_ERROR,
-	RECIEVE_NAVIGATION,
+	RECIEVE_ENTIRE_STATE,
 	CHANGE_LANGUAGE,
-	CHANGE_PAGE
+	CHANGE_PAGE,
+	TOGGLE_SHOWHIDE_MENU
 } from '../actions/actions.js';
 
 
@@ -30,6 +31,8 @@ function activePage(state = {}, action) {
 				isFetching: false,
 				error: {code: action.statusCode, message: action.message}
 			})
+		case RECIEVE_ENTIRE_STATE:
+			return action.state.activePage
 		default:
 			return state
 	}
@@ -37,10 +40,8 @@ function activePage(state = {}, action) {
 
 function pages(state = {}, action) {
 	switch(action.type) {
-		case RECIEVE_CONTENT:
-			return Object.assign({}, state, {					
-				[action.pagePath]: action.page
-			})
+		case RECIEVE_ENTIRE_STATE:
+			return action.state.pages
 		default:
 			return state
 	}
@@ -48,12 +49,8 @@ function pages(state = {}, action) {
 
 function navigation(state = [], action) {
 	switch(action.type) {
-		case RECIEVE_NAVIGATION: {
-			return [
-				...state,
-				...action.navigation
-			]
-		}
+		case RECIEVE_ENTIRE_STATE:
+			return action.state.navigation
 		default:
 			return state
 	}
@@ -68,6 +65,17 @@ function language(state = 'eng', action) {
 	}
 }
 
+function showMenu(state = false, action) {
+	switch(action.type) {
+		case CHANGE_PAGE:
+			return false
+		case TOGGLE_SHOWHIDE_MENU:
+			return !state
+		default:
+			return state
+	}	
+}
+
 export default combineReducers({
-	navigation, activePage, pages, language
+	navigation, activePage, pages, language, showMenu
 })

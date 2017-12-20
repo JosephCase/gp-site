@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PageContent from './PageContent.js';
 import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';

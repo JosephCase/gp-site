@@ -6,7 +6,6 @@ const stylePath = assetManifest['main.css'];
 
 exports.render = (html, state) => {
 
-
 	return (
 		`<!DOCTYPE html>
 		<html lang="en">

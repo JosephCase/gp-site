@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import '../css/header.css';
+
+import React from 'react';
 import { Link } from 'react-router-dom';
 import VisibleMenu from '../containers/VisibleMenu.js';
 
+
 const Header = () => (
-	<div className='header'>
+	<header>
 		<h1><Link to='/'>Giusy Pirrotta</Link></h1>
 		<VisibleMenu />
-	</div>
+	</header>
 )
 
 export default Header;

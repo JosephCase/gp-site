@@ -1,0 +1,107 @@
+/*Fonts*/
+@font-face {
+    font-family: 'Dosis';
+    font-weight: 500;
+	font-style: normal;
+	src: url('../fonts/Dosis-500/Dosis-500.eot');
+	src: url('../fonts/Dosis-500/Dosis-500.eot?#iefix') format('embedded-opentype'),
+		 local('Dosis Medium'),
+		 local('Dosis-500'),
+		 url('../fonts/Dosis-500/Dosis-500.woff2') format('woff2'),
+		 url('../fonts/Dosis-500/Dosis-500.woff') format('woff'),
+		 url('../fonts/Dosis-500/Dosis-500.ttf') format('truetype'),
+		 url('../fonts/Dosis-500/Dosis-500.svg#Dosis') format('svg');
+}
+@font-face {
+  font-family: 'Dosis';
+  font-weight: 600;
+  font-style: normal;
+  src: url('../fonts/Dosis-600/Dosis-600.eot');
+  src: url('../fonts/Dosis-600/Dosis-600.eot?#iefix') format('embedded-opentype'),
+       local('Dosis SemiBold'),
+       local('Dosis-600'),
+       url('../fonts/Dosis-600/Dosis-600.woff2') format('woff2'),
+       url('../fonts/Dosis-600/Dosis-600.woff') format('woff'),
+       url('../fonts/Dosis-600/Dosis-600.ttf') format('truetype'),
+       url('../fonts/Dosis-600/Dosis-600.svg#Dosis') format('svg');
+}
+
+@font-face {
+  font-family: 'Dosis';
+  font-weight: 700;
+  font-style: normal;
+  src: url('../fonts/Dosis-700/Dosis-700.eot');
+  src: url('../fonts/Dosis-700/Dosis-700.eot?#iefix') format('embedded-opentype'),
+       local('Dosis Bold'),
+       local('Dosis-700'),
+       url('../fonts/Dosis-700/Dosis-700.woff2') format('woff2'),
+       url('../fonts/Dosis-700/Dosis-700.woff') format('woff'),
+       url('../fonts/Dosis-700/Dosis-700.ttf') format('truetype'),
+       url('../fonts/Dosis-700/Dosis-700.svg#Dosis') format('svg');
+}
+
+
+/*Theme*/
+h1, h2, h3, h4, h5, h6, p, a, li {
+	font-family: 'Dosis', sans-serif;
+	font-weight: 600;
+}
+
+i {
+	font-style: italic;
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	background-color: #fff;
+	overflow-x: visible;
+	position: relative;
+	padding-top: 60px;
+}
+
+.content, .pages {
+	width: 100%;	
+	box-sizing: border-box;
+	margin: 0 auto;
+	position: relative;
+	overflow: auto;	
+    min-height: calc(100vh - 160px);
+}
+
+img {
+	opacity: 0;
+	transition: opacity 1s;
+}
+img.loaded {
+	opacity: 1;
+}
+
+.errorMsg {
+	text-align: center;
+	margin: 100px 0;
+	font-size: 26px;
+}
+
+
+
+@media (max-width: 620px) {
+	h1.title {
+		font-size: 60px;
+	}
+}
+
+
+

@@ -1,27 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SectionContent = ({ pages }) => {
+import '../css/sectionPage.css';
 
-	let pageElements = pages.map((page) => {
-		let mainImage = '';
-		if (page.mainImage_url) {
-			mainImage = `http://localhost:8081/content/${page.mainImage_url.replace('.jpg', '_x500.jpg')}`;
-		}
+import Image from './Image.js';
+import Page from './Page.js';
+
+class SectionContent extends Page {
+
+	render() {
+
+		var { pages } = this.props;
+
+		let pageElements = pages.map((page) => {
+			return (
+				<Link to={page.path} key={page.id}>
+					<Image src={page.mainImage_url} alt='' />
+					<div className='overlay'>
+						<p>{page.name}</p>
+					</div>
+				</Link>
+			)
+		});
+
 		return (
-			<div key={page.id}>
-				<p><Link to={page.path}>{page.name}</Link></p>
-				<img src={mainImage} />
+			<div className='pages'>
+				<div>{ pageElements }</div>
 			</div>
-		)
-	});
+		);
 
-	return (
-		<div className='section'>
-			<h1>Section</h1>
-			<div>{ pageElements }</div>
-		</div>
-	);
+	}
 }
 
 export default SectionContent;

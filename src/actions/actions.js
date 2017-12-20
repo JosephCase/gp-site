@@ -1,21 +1,22 @@
-export const RECIEVE_NAVIGATION = 'RECIEVE_NAVIGATION';
+export const RECIEVE_ENTIRE_STATE = 'RECIEVE_ENTIRE_STATE';
 export const REQUEST_CONTENT = 'REQUEST_CONTENT';
 export const RECIEVE_CONTENT = 'RECIEVE_CONTENT';
 export const RECIEVE_CONTENT_ERROR = 'RECIEVE_CONTENT_ERROR';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const TOGGLE_SHOWHIDE_MENU = 'TOGGLE_SHOWHIDE_MENU';
 
-export function fetchNavigation() {
+export function fetchState(path) {
 
 	return (dispatch) => {
 		
-		return fetch(`/api/navigation`)
+		return fetch(`/api${path}`)
 		.then((res) => {
 			if (!res.ok) throw res.statusText; 
 			return res.json();
 		})
 		.then((body) => {
-			dispatch(recieveNavigation(body));
+			dispatch(recieveState(body));
 		})
 		.catch(err => {
 			console.log(err);
@@ -24,10 +25,10 @@ export function fetchNavigation() {
 
 }
 
-function recieveNavigation(navigation) {
+function recieveState(state) {
 	return {
-		type: RECIEVE_NAVIGATION,
-		navigation
+		type: RECIEVE_ENTIRE_STATE,
+		state
 	}
 }
 
@@ -93,11 +94,8 @@ function fetchPage(pagePath) {
 		return fetch(`/api${pagePath}`)
 		.then((res) => {
 			if (!res.ok) {
-				throw {
-					statusCode: res.status,
-					message: res.statusText
-				};
-				return;
+				let err = {statusCode: res.status,message: res.statusText};
+				throw err;
 			}; 
 			return res.json();
 		})
@@ -115,5 +113,11 @@ export function changeLanguage(languageCode) {
 	return {
 		type: CHANGE_LANGUAGE,
 		languageCode: languageCode
+	}
+}
+
+export function showHideMenu() {
+	return {
+		type: TOGGLE_SHOWHIDE_MENU
 	}
 }

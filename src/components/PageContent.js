@@ -1,42 +1,40 @@
-import React from 'react';
+import '../css/workPage.css';
 
-const PageContent = ({ content }) => {
+import React, { Component } from 'react';
 
-	let contentElements = content.map((element) => {
-		switch(element.type) {
-			case 'text':
-				return <Text key={element.id} {...element} />
-			case 'image':
-				return <Image key={element.id} {...element} />
-			case 'video':
-				return <Video key={element.id} {...element} />
-			default:
-				return null
-		}
-	});
-	return (
-		<div className='page'>
-			<h1>Page</h1>
-			<div>{ contentElements }</div>
-		</div>
-	);
-}
+import Page from './Page.js';
+import Image from './Image.js';
 
-const Text = (props) => (
-	<p className={`text ${props.language} s${props.size}`}>{props.content}</p>
-)
 
-const Image = (props) => {
-	let imgPath = `http://localhost:8081/content/${props.content.replace('.jpg', '_x500.jpg')}`;
-	if(imgPath) {
-		return <img src={imgPath} />
-	} else {
-		return <img src='' />
+class PageContent extends Page {
+	render() {		
+		var { content } = this.props;
+		let contentElements = content.map((element) => {
+			switch(element.type) {
+				case 'text':
+					return <Text key={element.id} {...element} />
+				case 'image':
+					return <Image key={element.id} src={element.content} className={`s${element.size}`} />
+				case 'video':
+					return <Video key={element.id} {...element} />
+				default:
+					return null
+			}
+		});
+		return (
+			<div className='content'>
+				{ contentElements }
+			</div>
+		);
 	}
 }
 
+const Text = (props) => (
+	<p className={`text s${props.size}`}>{props.content}</p>
+)
+
 const Video = (props) => (
-	<video autoPlay='true' controls className={`${props.language} s${props.size}`}>
+	<video autoPlay='true' controls className={`s${props.size}`}>
 		<source src={`http://localhost:8081/content/${props.content}.webm`} type='video/webm' />
 		<source src={`http://localhost:8081/content/${props.content}.mp4`} type='video/mp4' />
 	</video>

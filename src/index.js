@@ -8,6 +8,10 @@ import createHistory from 'history/createBrowserHistory';
 
 import './css/reset.css';
 import './css/style.css';
+import './css/header.css';
+import './css/footer.css';
+import './css/sectionPage.css';
+import './css/workPage.css';
 
 import App from './App';
 import { navigate, fetchState } from './actions/actions.js'

@@ -1,5 +1,3 @@
-import '../css/workPage.css';
-
 import React, { Component } from 'react';
 
 import Page from './Page.js';

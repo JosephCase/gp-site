@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../css/sectionPage.css';
-
 import Image from './Image.js';
 import Page from './Page.js';
 
@@ -25,7 +23,7 @@ class SectionContent extends Page {
 
 		return (
 			<div className='pages'>
-				<div>{ pageElements }</div>
+				{ pageElements }
 			</div>
 		);
 

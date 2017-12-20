@@ -2,16 +2,16 @@
 	display: block;
 	position: relative;
 	float: left;
-	margin: 1%;
-	width: 30.66%;
-	padding-top: 20.44%;
+	margin: 2px;
+	width: calc((100% - 16px) / 3);
+	padding-top: 22%;
 	overflow: hidden;
 }
 .pages a:nth-of-type(3n - 2) {	
-	margin-left: 2%	
+	margin-left: 4px;	
 }
 .pages a:nth-of-type(3n) {	
-	margin-right: 2%	
+	margin-right: 4px;	
 }
 
 .pages a {	

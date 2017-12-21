@@ -81,6 +81,14 @@ body {
     min-height: calc(100vh - 160px);
 }
 
+.contentContainer {
+	opacity: 1;
+	transition: opacity 0.5s;
+}
+.isNavigating .contentContainer {
+	opacity: 0;
+}
+
 img {
 	opacity: 0;
 	transition: opacity 1s;
@@ -94,8 +102,6 @@ img.loaded {
 	margin: 100px 0;
 	font-size: 26px;
 }
-
-
 
 @media (max-width: 620px) {
 	h1.title {

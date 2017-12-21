@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Markdown from 'react-markdown';
+import breaks from 'remark-breaks';
 
 import Page from './Page.js';
 import Image from './Image.js';
@@ -27,9 +29,21 @@ class PageContent extends Page {
 	}
 }
 
-const Text = (props) => (
-	<p className={`text s${props.size}`}>{props.content}</p>
-)
+const Text = ({content, size}) => {
+	content = content.replace(/#(?!#)/g, '# ');
+	// (?!.*bar)
+	// content = content.replace('#', '# ');
+	return(
+		<div className={`text s${size}`}>
+			<Markdown source={content} plugins={[breaks]} />
+		</div>
+	)
+	// return(
+	// 	<div className={`text s${size}`}>
+	// 		<p>{content}</p>
+	// 	</div>
+	// )
+}
 
 const Video = (props) => (
 	<video autoPlay='true' controls className={`s${props.size}`}>

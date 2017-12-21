@@ -16,6 +16,7 @@ import './css/workPage.css';
 import App from './App';
 import { navigate, fetchState } from './actions/actions.js'
 import reducers from './reducers/reducers.js'
+import ActivePageContent from './containers/ActivePageContent.js'
 // import registerServiceWorker from './registerServiceWorker';
 
 
@@ -35,7 +36,6 @@ const store = createStore(
 function historyListener(location) {
 	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
 	store.dispatch(navigate(newPath));
-	window.scrollTo(0, 0);
 }
 
 const history = createHistory();
@@ -50,7 +50,7 @@ if(process.env.NODE_ENV === 'development') {
 hydrate(
 	<Provider store={store}>
 		<Router history={history}>
-			<App />
+        	<ActivePageContent />
 		</Router>
 	</Provider>,
 	document.getElementById('root')

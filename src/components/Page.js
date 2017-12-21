@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import config from '../config.js';
 
-import placeholderImage from '../placeholder.gif'
-
 const contentHost = config.contentHost;
 const imageSizes = config.imageSizes;
 
@@ -43,13 +41,13 @@ class Page extends Component {
 			}
 		}, false);
 		this.images[i].addEventListener('error', function() {
-			this.src = placeholderImage;
+			this.src = '/placeholder.gif';
 		})
 	}
 
 	chooseSize(src, width) {
 
-		if(!src) return placeholderImage;
+		if(!src) return '/placeholder.gif';
 
 		var physicalWidth = this.calculatePhysicalWidth(width);
 

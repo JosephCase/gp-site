@@ -23,6 +23,7 @@ class SectionContent extends Page {
 
 		return (
 			<div className='pages'>
+				<h1>TEST</h1>
 				{ pageElements }
 			</div>
 		);

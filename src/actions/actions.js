@@ -5,6 +5,7 @@ export const RECIEVE_CONTENT_ERROR = 'RECIEVE_CONTENT_ERROR';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const TOGGLE_SHOWHIDE_MENU = 'TOGGLE_SHOWHIDE_MENU';
+export const CHANGE_PAGE_START = 'CHANGE_PAGE_START';
 
 export function fetchState(path) {
 
@@ -53,6 +54,12 @@ function receivePageContent_error(err) {
 	}
 }
 
+function changePageStart() {
+	return {
+		type: CHANGE_PAGE_START
+	}
+}
+
 function changePage(path) {
 	return {
 		type: CHANGE_PAGE,
@@ -60,11 +67,17 @@ function changePage(path) {
 	}
 }
 
+
 export function navigate(path) {
 
 	return (dispatch, getState) => {
 
-		dispatch(changePage(path));
+		dispatch(changePageStart());
+
+		setTimeout(() => {
+			dispatch(changePage(path));
+			if(window) window.scrollTo(0, 0);
+		}, 500);
 
 		if(shouldFetchPage(getState(), path)) {
 			return dispatch(fetchPage(path));

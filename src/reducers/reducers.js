@@ -6,15 +6,21 @@ import {
 	RECIEVE_ENTIRE_STATE,
 	CHANGE_LANGUAGE,
 	CHANGE_PAGE,
-	TOGGLE_SHOWHIDE_MENU
+	TOGGLE_SHOWHIDE_MENU,
+	CHANGE_PAGE_START
 } from '../actions/actions.js';
 
 
 function activePage(state = {}, action) {
 	switch(action.type) {
+		case CHANGE_PAGE_START:
+			return Object.assign({}, state, {
+				pageChanging: true
+			})
 		case CHANGE_PAGE:
 			return Object.assign({}, state, {
 				isFetching: false,
+				pageChanging: false,
 				path: action.path,
 				error: null
 			})

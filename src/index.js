@@ -13,10 +13,9 @@ import './css/footer.css';
 import './css/sectionPage.css';
 import './css/workPage.css';
 
-import App from './App';
 import { navigate, fetchState } from './actions/actions.js'
 import reducers from './reducers/reducers.js'
-import ActivePageContent from './containers/ActivePageContent.js'
+import ActivePage from './containers/ActivePage.js'
 // import registerServiceWorker from './registerServiceWorker';
 
 
@@ -50,7 +49,7 @@ if(process.env.NODE_ENV === 'development') {
 hydrate(
 	<Provider store={store}>
 		<Router history={history}>
-        	<ActivePageContent />
+        	<ActivePage />
 		</Router>
 	</Provider>,
 	document.getElementById('root')

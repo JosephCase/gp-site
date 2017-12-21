@@ -94,7 +94,7 @@ function getSection(apiPath) {
 
     return new Promise((resolve, reject) => {
 
-        let reqPath = `${config.apiHost}${apiPath}?embed=pages`;
+        let reqPath = `${config.apiHost}${apiPath}?embed=pages&visible=true`;
         request.get(reqPath, (err, api_res, body) => {
             if(err) {
                 console.log(`Could not get content from API, ${err}`);

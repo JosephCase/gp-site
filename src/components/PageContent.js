@@ -14,6 +14,7 @@ class PageContent extends Page {
 				case 'text':
 					return <Text key={element.id} {...element} />
 				case 'image':
+				case 'img':
 					return <Image key={element.id} src={element.content} className={`s${element.size}`} />
 				case 'video':
 					return <Video key={element.id} {...element} />

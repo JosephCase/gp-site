@@ -1,11 +1,9 @@
 export const RECIEVE_ENTIRE_STATE = 'RECIEVE_ENTIRE_STATE';
-export const REQUEST_CONTENT = 'REQUEST_CONTENT';
-export const RECIEVE_CONTENT = 'RECIEVE_CONTENT';
-export const RECIEVE_CONTENT_ERROR = 'RECIEVE_CONTENT_ERROR';
-export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
-export const CHANGE_PAGE = 'CHANGE_PAGE';
-export const TOGGLE_SHOWHIDE_MENU = 'TOGGLE_SHOWHIDE_MENU';
 export const CHANGE_PAGE_START = 'CHANGE_PAGE_START';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+export const TOGGLE_SHOWHIDE_MENU = 'TOGGLE_SHOWHIDE_MENU';
+export const PAGE_NOT_FOUND = 'PAGE_NOT_FOUND';
 
 export function fetchState(path) {
 
@@ -33,25 +31,22 @@ function recieveState(state) {
 	}
 }
 
-function requestContent(pagePath) {
-	return {
-		type: REQUEST_CONTENT
-	}
-}
+export function navigate(path) {
 
-function receivePageContent(pagePath, page) {
-	return {
-		type: RECIEVE_CONTENT,
-		pagePath,
-		page: page
-	}
-}
+	return (dispatch, getState) => {
 
-function receivePageContent_error(err) {
-	return {
-		type: RECIEVE_CONTENT_ERROR,
-		error: err
+		dispatch(changePageStart());
+
+		setTimeout(() => {
+			if(window) window.scrollTo(0, 0);
+			if(pageExists(getState(), path)) {
+				return dispatch(changePage(path));
+			} else {
+				return dispatch(pageNotFound(path));
+			}
+		}, 500);
 	}
+
 }
 
 function changePageStart() {
@@ -67,60 +62,17 @@ function changePage(path) {
 	}
 }
 
-
-export function navigate(path) {
-
-	return (dispatch, getState) => {
-
-		dispatch(changePageStart());
-
-		setTimeout(() => {
-			dispatch(changePage(path));
-			if(window) window.scrollTo(0, 0);
-		}, 500);
-
-		if(shouldFetchPage(getState(), path)) {
-			return dispatch(fetchPage(path));
-		} else {
-			return Promise.resolve();
-		}
-
-	}
-
-}
-
-function shouldFetchPage(state, path) {
-	let page = state.pages[path];
-	if(page) {
-		return false;
-	} else {
-		return true;
+function pageNotFound(path) {
+	return {
+		type: PAGE_NOT_FOUND
 	}
 }
 
-function fetchPage(pagePath) {
-
-	return (dispatch) => {
-
-		dispatch(requestContent(pagePath));
-
-		return fetch(`/api${pagePath}`)
-		.then((res) => {
-			if (!res.ok) {
-				let err = {statusCode: res.status,message: res.statusText};
-				throw err;
-			}; 
-			return res.json();
-		})
-		.then((body) => {
-			dispatch(receivePageContent(pagePath, body));
-		})
-		.catch(err => {
-			dispatch(receivePageContent_error(err))
-		})
-	}
-
+function pageExists(state, path) {
+	return(state.pages[path] ? true : false)
 }
+
+
 
 export function changeLanguage(languageCode) {
 	return {

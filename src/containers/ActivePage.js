@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import MainContent from '../components/MainContent.js';
 
 const mapStateToProps = state => {
+
 	let activePath = state.activePage.path;
 	let pageContent = state.pages[activePath];
+
 	if(!pageContent) {
 		return state.activePage; 
 	} else if(pageContent.type === 'section') {
@@ -23,8 +25,8 @@ const mapStateToProps = state => {
 	}
 }
 
-const ActivePageContent = connect(
+const ActivePage = connect(
     mapStateToProps
 )(MainContent)
 
-export default ActivePageContent;
+export default ActivePage;

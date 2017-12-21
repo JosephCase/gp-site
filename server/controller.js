@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
 
 import reducers from '../src/reducers/reducers.js';
-import App from '../src/App.js';
+import ActivePage from '../src/containers/ActivePage.js';
 
 
 const config = require('../config/config.js');
@@ -38,7 +38,7 @@ exports.serveBundle = (req, res) => {
 	const html = renderToString(
 		<Provider store={store}>
 			<Router>
-				<App />
+				<ActivePage />
 			</Router>
 		</Provider>
 	)

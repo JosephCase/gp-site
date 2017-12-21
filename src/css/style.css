@@ -78,12 +78,30 @@ body {
 	margin: 0 auto;
 	position: relative;
 	overflow: auto;	
-    min-height: calc(100vh - 160px);
+}
+.loader {
+
+    transform-origin: left;
+    position: fixed;
+    width: 100px;
+    transform: translate(0);
+    height: 3px;
+    top: 0px;
+    background: black;
+    left: -100px;
+    z-index: 2;
+    border-radius: 2px;
+}
+
+.isNavigating .loader {	
+    transition: transform 0.75s;
+    transform: translate(calc(100vw + 100px));
 }
 
 .contentContainer {
 	opacity: 1;
 	transition: opacity 0.5s;
+    min-height: calc(100vh - 160px);
 }
 .isNavigating .contentContainer {
 	opacity: 0;

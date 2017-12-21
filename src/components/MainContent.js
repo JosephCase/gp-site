@@ -31,13 +31,14 @@ const MainContent = ({error, type, pages, content, pageChanging}) => {
 
 	return (
 		<div className={classes.join(' ')}>
-        <Header />
-        <div className='contentContainer'>
-			{ activeContent }
-        </div>
-        }
-        <Footer />
-      </div>
+			<div className='loader'></div>
+	        <Header />
+	        <div className='contentContainer'>
+				{ activeContent }
+	        </div>
+	        }
+	        <Footer />
+     	</div>
 	)
 }
 

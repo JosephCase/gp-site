@@ -1,5 +1,16 @@
 /*Fonts*/
 @font-face {
+    font-family: 'Aqua';
+	font-style: normal;
+	src: url('../fonts/aqua.ttf') format('truetype');
+}
+
+/*@font-face {
+	font-family: 'Aqua';
+	font-style: normal;
+	src: url('https://fonts.googleapis.com/css?family=Open+Sans');
+}*/
+/*@font-face {
     font-family: 'Dosis';
     font-weight: 500;
 	font-style: normal;
@@ -38,12 +49,12 @@
        url('../fonts/Dosis-700/Dosis-700.woff') format('woff'),
        url('../fonts/Dosis-700/Dosis-700.ttf') format('truetype'),
        url('../fonts/Dosis-700/Dosis-700.svg#Dosis') format('svg');
-}
+}*/
 
 
 /*Theme*/
 h1, h2, h3, h4, h5, h6, p, a, li {
-	font-family: 'Dosis', sans-serif;
+	font-family: 'Aqua', sans-serif;
 	font-weight: 600;
 }
 
@@ -69,7 +80,7 @@ body {
 	background-color: #fff;
 	overflow-x: visible;
 	position: relative;
-	padding-top: 100px;
+	padding-top: 60px;
 }
 
 .content, .pages {
@@ -78,6 +89,9 @@ body {
 	margin: 0 auto;
 	position: relative;
 	overflow: auto;	
+}
+.content {
+	margin-top: 50px;
 }
 .loader {
 
@@ -101,7 +115,7 @@ body {
 .contentContainer {
 	opacity: 1;
 	transition: opacity 0.5s;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 210px);
 }
 .isNavigating .contentContainer {
 	opacity: 0;

@@ -41,13 +41,13 @@ class Page extends Component {
 			}
 		}, false);
 		this.images[i].addEventListener('error', function() {
-			this.src = '/placeholder.gif';
+			this.src = '/public/placeholder.gif';
 		})
 	}
 
 	chooseSize(src, width) {
 
-		if(!src) return '/placeholder.gif';
+		if(!src) return '/public/placeholder.gif';
 
 		var physicalWidth = this.calculatePhysicalWidth(width);
 

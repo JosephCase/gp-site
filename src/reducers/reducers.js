@@ -63,7 +63,7 @@ function language(state = 'eng', action) {
 
 function showMenu(state = false, action) {
 	switch(action.type) {
-		case CHANGE_PAGE:
+		case CHANGE_PAGE_START:
 			return false
 		case TOGGLE_SHOWHIDE_MENU:
 			return !state

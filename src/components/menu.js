@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Menu = ({links, currentLanguage, setLanguage, showMenu, showHide}) => (
 	<div className={`menu${showMenu ? ' show' : ''}`}>
-		<div class="button" onClick={showHide}>		    
+		<div className="button" onClick={showHide}>		    
 			<div></div>
 			<div></div>
 		    <div></div>

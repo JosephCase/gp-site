@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Markdown from 'react-markdown';
 import breaks from 'remark-breaks';
 
+import config from '../config.js';
 import Page from './Page.js';
 import Image from './Image.js';
 
+const contentHost = config.contentHost;
 
 class PageContent extends Page {
 	render() {		
@@ -39,17 +41,12 @@ const Text = ({content, size}) => {
 			<Markdown source={content} plugins={[breaks]} />
 		</div>
 	)
-	// return(
-	// 	<div className={`text s${size}`}>
-	// 		<p>{content}</p>
-	// 	</div>
-	// )
 }
 
 const Video = (props) => (
 	<video autoPlay='true' controls className={`s${props.size}`}>
-		<source src={`http://localhost:8081/content/${props.content}.webm`} type='video/webm' />
-		<source src={`http://localhost:8081/content/${props.content}.mp4`} type='video/mp4' />
+		<source src={`${contentHost}${props.content}.webm`} type='video/webm' />
+		<source src={`${contentHost}${props.content}.mp4`} type='video/mp4' />
 	</video>
 )
 

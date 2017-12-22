@@ -36,7 +36,6 @@ const MainContent = ({error, type, pages, content, pageChanging}) => {
 	        <div className='contentContainer'>
 				{ activeContent }
 	        </div>
-	        }
 	        <Footer />
      	</div>
 	)

@@ -3,10 +3,10 @@
 global.appRoute = __dirname;
 
 const config = require('../config/config.js');
-const controller = require('./controller.js');
+const contentService = require('./contentService.js');
 const app = require('./app.js');
 
-controller.generateContent();
+contentService.generateAll();
 
 app.listen(config.port, () => {
 

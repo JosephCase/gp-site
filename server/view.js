@@ -17,7 +17,7 @@ exports.render = (html, state) => {
 		    <link rel="manifest" href="/manifest.json">
 		    <link rel="shortcut icon" href="/favicon.ico">
 		    <title>artist: Giusy Pirrotta</title>
-		    <link href=${stylePath} rel="stylesheet">
+		    <link href='/${stylePath}' rel="stylesheet">
 		</head>
 
 		<body>
@@ -26,7 +26,7 @@ exports.render = (html, state) => {
 		    <script>
 	        	window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')}
 	        </script>
-		    <script type="text/javascript" src=${bundlePath}></script>
+		    <script type="text/javascript" src='/${bundlePath}'></script>
 		</body>
 
 		</html>`

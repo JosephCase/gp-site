@@ -15,19 +15,6 @@ const routeHelper = require('./routeHelper.js');
 const view = require('./view.js');
 const contentService = require('./contentService.js');
 
-exports.generateContent = () => {
-
-	routeHelper.generateRoutes()
-	.then(() => {
-		contentService.generateNavigation();
-		contentService.generatePages();
-	})
-	.catch(err => {
-		console.log(err);
-	})
-
-}
-
 exports.serveBundle = (req, res) => {
 
 	const store = createStore(
@@ -46,6 +33,9 @@ exports.serveBundle = (req, res) => {
 	console.log(store.getState().activePage);
 
 	res.send(view.render(html, store.getState()));
+
+	//repopulate the content cache
+	contentService.generateAll();
 
 }
 

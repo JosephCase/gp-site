@@ -7,54 +7,78 @@ const config = require('../config/config.js');
 const routeHelper = require('./routeHelper.js');
 
 var pages = {};
+var isUpdating = false;
 
-exports.generateNavigation = () => {
-	request.get(`${config.apiHost}/navigation`, (err, api_res, body) => {
-        if(err) {
-            console.log(`Could not get navigation from API, ${err}`);
-            return;
-        }
+exports.generateAll = () => {
 
-        let navigation = JSON.parse(body);
-        navigation.forEach( link => {
-            link.path = routeHelper.getRouteById(link.id).path;
-        })
+    if(isUpdating) return;
+    console.log('START');
+    isUpdating = true;
+    routeHelper.generateRoutes()
+    .then(() => {
+        return Promise.all([
+            generateNavigation(),
+            generatePages()
+        ]);
+    })
+    .then(() => {
+        isUpdating = false;
+        console.log('FINISH');
+    })
+    .catch(err => {
+        console.log(err);
+    })
 
-       	cache.put('navigation', navigation)
-
-       	return;
-
-    });
 }
 
 exports.getNavigation = () => {
-	return cache.get('navigation');
-}
-
-
-exports.generatePages = () => {
-
-	let promises = [];
-
-	let routes = routeHelper.getAllRoutes();
-	routes.forEach( route => {
-		promises.push(getPageContent(route));
-	});
-
-	Promise.all(promises)
-	.then(() => {
-		cache.put('pages', pages);
-		pages = {};
-		console.log('Pages Populated', pages);
-	})
-	.catch(err => {
-		return console.log(err);
-	})
+    return cache.get('navigation');
 }
 
 exports.getPages = () => {
 	return cache.get('pages');
 }
+
+
+function generateNavigation() {
+
+    return new Promise((resolve, reject) => {        
+        request.get(`${config.apiHost}/navigation`, (err, api_res, body) => {
+            if(err) {
+                reject(`Could not get navigation from API, ${err}`);
+                return;
+            }
+
+            let navigation = JSON.parse(body);
+            navigation.forEach( link => {
+                link.path = routeHelper.getRouteById(link.id).path;
+            })
+
+            cache.put('navigation', navigation)
+
+            return resolve();
+
+        });
+    })
+}
+
+function generatePages() {
+
+    let promises = [];
+
+    let routes = routeHelper.getAllRoutes();
+    routes.forEach( route => {
+        promises.push(getPageContent(route));
+    });
+
+    return Promise.all(promises)
+    .then(() => {
+        cache.put('pages', pages);
+        pages = {};
+        isUpdating = false;
+    })
+}
+
 
 function getPageContent(route) {
 

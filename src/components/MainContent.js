@@ -8,7 +8,7 @@ import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';
 
 
-const MainContent = ({error, type, pages, content, pageChanging}) => {
+const MainContent = ({error, type, pages, content, pageChanging, path}) => {
 
 	const classes = ['App'];
 	classes.push(pageChanging ? 'isNavigating' : '');
@@ -30,7 +30,7 @@ const MainContent = ({error, type, pages, content, pageChanging}) => {
 	}
 
 	return (
-		<div className={classes.join(' ')}>
+		<div className={classes.join(' ')} data-path={path}>
 			<div className='loader'></div>
 	        <Header />
 	        <div className='contentContainer'>

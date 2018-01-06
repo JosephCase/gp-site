@@ -35,7 +35,7 @@ export function navigate(path) {
 
 	return (dispatch, getState) => {
 
-		dispatch(changePageStart());
+		dispatch(changePageStart(path));
 
 		setTimeout(() => {
 			if(window) window.scrollTo(0, 0);
@@ -49,9 +49,10 @@ export function navigate(path) {
 
 }
 
-function changePageStart() {
+function changePageStart(path) {
 	return {
-		type: CHANGE_PAGE_START
+		type: CHANGE_PAGE_START,
+		path
 	}
 }
 

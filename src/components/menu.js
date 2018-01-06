@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Menu = ({links, currentLanguage, setLanguage, showMenu, showHide}) => (
+const Menu = ({links, currentLanguage, currentSectionId, setLanguage, showMenu, showHide}) => (
 	<div className={`menu${showMenu ? ' show' : ''}`}>
 		<div className="button" onClick={showHide}>		    
 			<div></div>
@@ -12,13 +12,15 @@ const Menu = ({links, currentLanguage, setLanguage, showMenu, showHide}) => (
 			<ul>
 			{
 				links.map((link) => {
-					return <li key={link.id} ><Link to={link.path}>{link.name}</Link></li>
+					let className = currentSectionId === link.id ? 'active' : '';
+					return <li key={link.id} className={className}><Link to={link.path}>{link.name}</Link></li>
 				}) 
 			}
 			</ul>
-			<ul>
-				<LanguageButton languageCode='eng' currentLanguage={currentLanguage} onClick={setLanguage} >English</LanguageButton>
-				<LanguageButton languageCode='ita' currentLanguage={currentLanguage} onClick={setLanguage} >Italiano</LanguageButton>
+			<ul className='language'>
+				<LanguageButton languageCode='eng' currentLanguage={currentLanguage} onClick={setLanguage}>ENG</LanguageButton>
+				<li>/</li>
+				<LanguageButton languageCode='ita' currentLanguage={currentLanguage} onClick={setLanguage}>ITA</LanguageButton>
 			</ul>
 		</div>
 	</div>

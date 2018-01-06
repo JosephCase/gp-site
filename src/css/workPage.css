@@ -38,19 +38,21 @@
 
 .content p {
 	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
 }
 
 .content p+p {
-	margin-top: 20px;
+	margin-top: 40px;
 }
 
-.content .s12 p {font-size: 12px;}
+/*.content .s12 p {font-size: 12px;}
 .content .s13 p {font-size: 13px;}
 .content .s14 p {font-size: 14px;}
 .content .s15 p {font-size: 15px;}
 .content .s16 p {font-size: 16px;}
 .content .s17 p {font-size: 17px;}
-.content .s18 p {font-size: 18px;}
+.content .s18 p {font-size: 18px;}*/
 
 
 
@@ -128,6 +130,9 @@
 @media (max-width: 760px) {
 	.content h1 {
 		font-size: 32px;
+	}
+	.content h2 {
+		font-size: 28px;
 	}
 }
 

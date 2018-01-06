@@ -5,10 +5,11 @@ footer {
 }
 footer h5 {
 	line-height: 20px;
+	font-size: 12px;
 }
 footer p {
 	line-height: 20px;
-	font-size: 12px;
+	font-size: 9px;
 	margin-top: 0;
 	font-weight: 500;
 }

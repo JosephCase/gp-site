@@ -43,7 +43,7 @@ exports.getPages = () => {
 function generateNavigation() {
 
     return new Promise((resolve, reject) => {        
-        request.get(`${config.apiHost}/navigation`, (err, api_res, body) => {
+        request.get(`${config.apiHost}/navigation?visible=true`, (err, api_res, body) => {
             if(err) {
                 reject(`Could not get navigation from API, ${err}`);
                 return;

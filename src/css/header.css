@@ -1,12 +1,18 @@
 header {
 	position: fixed;
 	top: 0;
-	background: rgba(255,255,255,1);
+	background: #fff;
 	width: 100%;
 	z-index: 1;
 	padding: 0 2%;
 	box-sizing: border-box;
+	opacity: 1;
+	/*transition: opacity 0.2s;*/
 }
+
+/*header:hover {
+	opacity: 1;
+}*/
 
 header h1 {
 	height: 50px;
@@ -23,6 +29,8 @@ header .button {
     width: 26px;
     margin-top: 10px;
     height: 30px;
+    cursor: pointer;
+    display: none;
 }
 
 header .button div {
@@ -36,28 +44,46 @@ header .button div {
 
 .navigation {
 	position: fixed;
-    height: 500px;
-    background: #fff;
+    height: 50px;
+    /*background: #fff;*/
     color: #000;
     top: 0;    
-    padding: 40px 20px 0;
-    right: calc(2% + 45px);
-    transform: translateY(-100%);
+    width: calc(100% - 223px);
+    /*padding: 40px 20px 0;*/
+    right: 0;
+    transform: translateX(100%);
     transition: transform 0.2s;
     box-sizing: border-box;
+    display: flex;
 }
 
 .navigation ul {
-	padding: 20px 0;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
-.navigation ul + ul {
-	border-top: 2px solid #000;
+.navigation ul.language {
+	width: 20%;
+	justify-content: center;
+}
+
+.navigation ul.language li {
+	font-size: 12px;
+	opacity: 0.2;
+	cursor: pointer;
+}
+
+.navigation ul.language li.active {
+	opacity: 1;
 }
 
 .navigation li {
-	font-size: 18px;
-    margin: 16px 0;
-    width: 200px;
+	opacity: 0.2;
+	transition: opacity 0.2s;
+}
+.navigation li:hover, .navigation li.active {
+	opacity: 1;
 }
 
 .navigation a {
@@ -65,7 +91,7 @@ header .button div {
 }
 
 .menu.show .navigation {
-    transform: translateY(0);	
+    transform: translateX(0);	
 }
 
 .menu.show .button div {
@@ -81,7 +107,7 @@ header .button div {
 	opacity: 0;
 }
 .menu.show .button div:nth-of-type(3) {
-	margin-top: -18px;
+	margin-top: -16px;
 	transform: rotateZ(45deg);
 }
 

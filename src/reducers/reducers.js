@@ -15,13 +15,14 @@ function activePage(state = {}, action) {
 			return action.state.activePage
 		case CHANGE_PAGE_START:
 			return Object.assign({}, state, {
-				pageChanging: true
+				pageChanging: true,
+				next_path: action.path
 			})
 		case CHANGE_PAGE:
 			return Object.assign({}, state, {
 				pageChanging: false,
 				path: action.path,
-				error: null
+				error: null, next_path: null
 			})
 		case PAGE_NOT_FOUND:
 			return Object.assign({}, state, {
@@ -61,10 +62,8 @@ function language(state = 'eng', action) {
 	}
 }
 
-function showMenu(state = false, action) {
+function showMenu(state = true, action) {
 	switch(action.type) {
-		case CHANGE_PAGE_START:
-			return false
 		case TOGGLE_SHOWHIDE_MENU:
 			return !state
 		default:

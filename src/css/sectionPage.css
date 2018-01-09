@@ -58,6 +58,7 @@
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
 	text-align: center;
+	font-size: 14px;
 }
 
 @media (max-width: 800px) {

@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'Aqua';
 	font-style: normal;
-	src: url('../fonts/aqua.ttf') format('truetype');
+	src: url('../fonts/aqua.woff') format('woff'), url('../fonts/aqua.ttf') format('truetype');
 }
 
 /*@font-face {

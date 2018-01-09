@@ -10,7 +10,7 @@ import PageNotFound from './PageNotFound.js';
 
 const MainContent = ({error, type, pages, content, pageChanging, path}) => {
 
-	const classes = ['App'];
+	const classes = ['App', 'fix'];
 	classes.push(pageChanging ? 'isNavigating' : '');
 
 	var activeContent;

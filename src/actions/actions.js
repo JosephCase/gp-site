@@ -37,8 +37,24 @@ export function navigate(path) {
 
 		dispatch(changePageStart(path));
 
+		if(window) {
+			var doc = document.documentElement;
+			let top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+			if(top < (window.innerHeight - 50)) {
+				window.scroll({
+					top: (window.innerHeight - 50), 
+					left: 0, 
+					behavior: 'smooth' 
+				})
+			}
+		}
+
 		setTimeout(() => {
-			if(window) window.scrollTo(0, 0);
+			if(window) {
+				window.scroll({
+					top: (window.innerHeight - 50)
+				})
+			}
 			if(pageExists(getState(), path)) {
 				return dispatch(changePage(path));
 			} else {

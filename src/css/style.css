@@ -2,58 +2,11 @@
 @font-face {
     font-family: 'Aqua';
 	font-style: normal;
-	src: url('../fonts/aqua.woff') format('woff'), url('../fonts/aqua.ttf') format('truetype');
+	src: url('../fonts/aqua/aqua.woff') format('woff'), url('../fonts/aqua/aqua.ttf') format('truetype');
 }
-
-/*@font-face {
-	font-family: 'Aqua';
-	font-style: normal;
-	src: url('https://fonts.googleapis.com/css?family=Open+Sans');
-}*/
-/*@font-face {
-    font-family: 'Dosis';
-    font-weight: 500;
-	font-style: normal;
-	src: url('../fonts/Dosis-500/Dosis-500.eot');
-	src: url('../fonts/Dosis-500/Dosis-500.eot?#iefix') format('embedded-opentype'),
-		 local('Dosis Medium'),
-		 local('Dosis-500'),
-		 url('../fonts/Dosis-500/Dosis-500.woff2') format('woff2'),
-		 url('../fonts/Dosis-500/Dosis-500.woff') format('woff'),
-		 url('../fonts/Dosis-500/Dosis-500.ttf') format('truetype'),
-		 url('../fonts/Dosis-500/Dosis-500.svg#Dosis') format('svg');
-}
-@font-face {
-  font-family: 'Dosis';
-  font-weight: 600;
-  font-style: normal;
-  src: url('../fonts/Dosis-600/Dosis-600.eot');
-  src: url('../fonts/Dosis-600/Dosis-600.eot?#iefix') format('embedded-opentype'),
-       local('Dosis SemiBold'),
-       local('Dosis-600'),
-       url('../fonts/Dosis-600/Dosis-600.woff2') format('woff2'),
-       url('../fonts/Dosis-600/Dosis-600.woff') format('woff'),
-       url('../fonts/Dosis-600/Dosis-600.ttf') format('truetype'),
-       url('../fonts/Dosis-600/Dosis-600.svg#Dosis') format('svg');
-}
-
-@font-face {
-  font-family: 'Dosis';
-  font-weight: 700;
-  font-style: normal;
-  src: url('../fonts/Dosis-700/Dosis-700.eot');
-  src: url('../fonts/Dosis-700/Dosis-700.eot?#iefix') format('embedded-opentype'),
-       local('Dosis Bold'),
-       local('Dosis-700'),
-       url('../fonts/Dosis-700/Dosis-700.woff2') format('woff2'),
-       url('../fonts/Dosis-700/Dosis-700.woff') format('woff'),
-       url('../fonts/Dosis-700/Dosis-700.ttf') format('truetype'),
-       url('../fonts/Dosis-700/Dosis-700.svg#Dosis') format('svg');
-}*/
-
 
 /*Theme*/
-h1, h2, h3, h4, h5, h6, p, a, li {
+h1, h2, h3, h4, h5, h6, p, li {
 	font-family: 'Aqua', sans-serif;
 	font-weight: 600;
 }
@@ -80,7 +33,15 @@ body {
 	background-color: #fff;
 	overflow-x: visible;
 	position: relative;
-	padding-top: 60px;
+}
+
+.App {
+	background-color: #fff;
+    margin-top: calc(100vh - 50px);
+}
+
+.App.fix {
+	margin-top: 100vh;
 }
 
 .content, .pages {

@@ -55,5 +55,21 @@ hydrate(
 	</Provider>,
 	document.getElementById('root')
 );
+
+var doc = document.documentElement;
+var AppDiv = document.getElementsByClassName('App')[0];
+
+window.addEventListener('scroll', demoFunction);
+document.onLoad = demoFunction();
+
+function demoFunction() {
+	
+	let top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+	if(top > (window.innerHeight - 50)) {
+		AppDiv.className = AppDiv.className.replace('noFix', 'fix');
+	} else {
+		AppDiv.className = AppDiv.className.replace('fix', 'noFix');
+	}
+}
 // registerServiceWorker();
 

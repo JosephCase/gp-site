@@ -1,29 +1,25 @@
 header {
-	background: #fff;
 	width: 100%;
 	z-index: 1;
 	padding: 0 4px;
 	box-sizing: border-box;
 	opacity: 1;
-	/*transition: opacity 0.2s;*/
+    position: relative;
 }
-
-
-/*header:hover {
-	opacity: 1;
-}*/
 
 header h1 {
-	height: calc(100vh - 50px);
-	line-height: calc(100vh - 50px);
+	z-index: 1;
 	letter-spacing: -1px;
-    font-size: 140px;
-    position: fixed;
-    z-index: -1;
-    text-align: center;
-    top: 0;
-    width: 100%;
+    font-size: 20px;
+    position: absolute;
+    left: 24px;
+    height: 100%;
+    opacity: 0;
+	display: flex;
+	align-items: center;
+    transition: opacity 1s;
 }
+
 
 header .button {
     position: relative;
@@ -45,7 +41,6 @@ header .button div {
 
 .navigation {
     height: 50px;
-    background: #fff;
     color: #000;
     top: 0;    
     /*padding: 40px 20px 0;*/
@@ -57,13 +52,21 @@ header .button div {
     width: 100%;
 }
 
-.fix .navigation {
+.fix header {
 	position: fixed;
 	z-index: 10;
 	top: 0;
+	background-color: #fff;
+}
+.fix header h1 {
+	opacity: 1;
+}
+.fix .navigation ul {
+	color: #000;
 }
 
 .navigation ul {
+	color: #fff;
 	width: 800px;
 	margin: auto;
 	display: flex;

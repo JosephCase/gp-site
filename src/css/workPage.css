@@ -1,5 +1,6 @@
 .content {
 	max-width: 140vh;
+	padding-top: 80px;
 }
 
 .content > * {

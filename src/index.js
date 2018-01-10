@@ -8,6 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import './css/reset.css';
 import './css/style.css';
+import './css/landingPage.css';
 import './css/header.css';
 import './css/footer.css';
 import './css/sectionPage.css';

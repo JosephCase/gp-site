@@ -32,6 +32,13 @@ const MainContent = ({error, type, pages, content, pageChanging, path}) => {
 	return (
 		<div className={classes.join(' ')} data-path={path}>
 			<div className='loader'></div>
+			<div className='landingPage'>
+				<video autoPlay='true' loop='true'>
+					<source src='http://www.giusypirrotta.com/content/file_283.webm' type='video/webm' />
+					<source src='http://www.giusypirrotta.com/content/file_283.mp4' type='video/mp4' />
+				</video>
+				<h1>Giusy Pirrotta</h1>
+			</div>
 	        <Header />
 	        <div className='contentContainer'>
 				{ activeContent }

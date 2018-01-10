@@ -1,0 +1,20 @@
+.landingPage h1 {
+	height: calc(100vh - 50px);
+	line-height: calc(100vh - 50px);
+	letter-spacing: -1px;
+    font-size: 12vw;
+    position: fixed;
+    z-index: -1;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.landingPage video {
+	width: 100%;
+	position: fixed;
+	z-index: -2;
+	top: 0;
+}

@@ -1,17 +1,22 @@
 import React from 'react';
 
 
-import Header from './Header.js';
+import Header from '../containers/Header.js';
 import Footer from './Footer.js';
 import PageContent from './PageContent.js';
 import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';
 
 
-const MainContent = ({error, type, pages, content, pageChanging, path}) => {
+const MainContent = (props) => {
 
-	const classes = ['App', 'fix'];
+	console.log(props);
+
+	let {error, type, pages, content, pageChanging, path, headerFixed} = props;
+
+	const classes = ['App'];
 	classes.push(pageChanging ? 'isNavigating' : '');
+	classes.push(headerFixed ? 'fix' : '');
 
 	var activeContent;
 	if(error) {
@@ -34,8 +39,8 @@ const MainContent = ({error, type, pages, content, pageChanging, path}) => {
 			<div className='loader'></div>
 			<div className='landingPage'>
 				<video autoPlay='true' loop='true'>
-					<source src='http://www.giusypirrotta.com/content/file_283.webm' type='video/webm' />
-					<source src='http://www.giusypirrotta.com/content/file_283.mp4' type='video/mp4' />
+					<source src='http://www.giusypirrotta.com/content/file_241.webm' type='video/webm' />
+					<source src='http://www.giusypirrotta.com/content/file_241.mp4' type='video/mp4' />
 				</video>
 				<h1>Giusy Pirrotta</h1>
 			</div>
@@ -44,6 +49,7 @@ const MainContent = ({error, type, pages, content, pageChanging, path}) => {
 				{ activeContent }
 	        </div>
 	        <Footer />
+			<div className='fader'></div>
      	</div>
 	)
 }

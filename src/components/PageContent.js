@@ -25,8 +25,10 @@ class PageContent extends Page {
 			}
 		});
 		return (
-			<div className='content'>
-				{ contentElements }
+			<div className='background'>
+				<div className='content'>
+					{ contentElements }
+				</div>
 			</div>
 		);
 	}

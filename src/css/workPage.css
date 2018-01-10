@@ -1,6 +1,9 @@
+.background {
+	background-color: #fff;
+}
 .content {
-	max-width: 140vh;
 	padding-top: 80px;
+	max-width: 130vh;
 }
 
 .content > * {

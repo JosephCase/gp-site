@@ -7,9 +7,15 @@ const mapStateToProps = state => {
 	let pageContent = state.pages[activePath];
 
 	if(!pageContent) {
-		return state.activePage; 
+		return  Object.assign({}, state.activePage,
+			{
+				headerFixed: state.headerFixed 
+			});
 	} else if(pageContent.type === 'section') {
-		return Object.assign({}, state.activePage, pageContent);
+		return Object.assign({}, state.activePage, pageContent,
+			{
+				headerFixed: state.headerFixed 
+			});
 	} else if(pageContent.type === 'page') {
 		let filteredContent = pageContent.content.filter(content => {
 			return (content.language === state.language || content.language === 'NUL' || content.language === null);
@@ -19,7 +25,8 @@ const mapStateToProps = state => {
 			state.activePage,
 			pageContent,
 			{
-				content: filteredContent
+				content: filteredContent,
+				headerFixed: state.headerFixed 
 			}
 		)
 	}

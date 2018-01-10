@@ -4,6 +4,7 @@ export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 export const TOGGLE_SHOWHIDE_MENU = 'TOGGLE_SHOWHIDE_MENU';
 export const PAGE_NOT_FOUND = 'PAGE_NOT_FOUND';
+export const FIX_HEADER = 'FIX_HEADER';
 
 export function fetchState(path) {
 
@@ -42,7 +43,7 @@ export function navigate(path) {
 			let top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 			if(top < (window.innerHeight - 50)) {
 				window.scroll({
-					top: (window.innerHeight - 50), 
+					top: (window.innerHeight - 49), 
 					left: 0, 
 					behavior: 'smooth' 
 				})
@@ -101,5 +102,12 @@ export function changeLanguage(languageCode) {
 export function showHideMenu() {
 	return {
 		type: TOGGLE_SHOWHIDE_MENU
+	}
+}
+
+export function fixHeader(fix) {
+	return {
+		type: FIX_HEADER,
+		fix
 	}
 }

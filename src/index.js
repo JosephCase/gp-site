@@ -13,6 +13,7 @@ import './css/header.css';
 import './css/footer.css';
 import './css/sectionPage.css';
 import './css/workPage.css';
+import './css/aboutPage.css';
 
 import { navigate, fetchState } from './actions/actions.js'
 import reducers from './reducers/reducers.js'

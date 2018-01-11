@@ -1,0 +1,10 @@
+.App[data-path="/about"] .content h1 {
+	text-align: center;
+    margin-top: 60px;
+}
+
+.App[data-path="/about"] .content h5 {
+	text-align: center;
+	font-size: 30px;
+    margin: 140px 0;
+}

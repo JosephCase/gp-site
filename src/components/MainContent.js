@@ -17,7 +17,9 @@ class MainContent extends Component {
 
 	componentDidUpdate() {
 		if(this.state.isNavigating !== this.props.pageChanging) {
-			this.setState({isNavigating: this.props.pageChanging})
+			setTimeout(() => {
+				this.setState({isNavigating: this.props.pageChanging})
+			}, 0)
 		}
 	}
 

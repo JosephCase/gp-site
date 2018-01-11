@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 
 import Header from './Header.js';
@@ -8,7 +8,7 @@ import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';
 
 
-class MainContent extends Component {
+class MainContent extends PureComponent {
 
 	constructor(props) {
 		super(props);
@@ -16,11 +16,11 @@ class MainContent extends Component {
 	}
 
 	componentDidUpdate() {
-		if(this.state.isNavigating !== this.props.pageChanging) {
+		// if(this.state.isNavigating !== this.props.pageChanging) {
 			setTimeout(() => {
 				this.setState({isNavigating: this.props.pageChanging})
 			}, 0)
-		}
+		// }
 	}
 
 	render() {

@@ -7,16 +7,28 @@ const mapStateToProps = state => {
 	let path = state.activePage.next_path ? state.activePage.next_path : state.activePage.path;
 
 	let currentSectionId = 0;
+	let sectionInfo = null;
 	let currentPage = state.pages[path];
 	if(currentPage) {
 		currentSectionId = currentPage.parentPage_id ? currentPage.parentPage_id : currentPage.id;
+		Object.keys(state.pages).forEach(path => {
+		    if(state.pages[path].id === currentSectionId) {
+		    	sectionInfo = {
+		    		name: state.pages[path].name,
+		    		path: path
+		    	}
+		    }
+		});
 	}
+
+
 
 	return {
 		links: state.navigation,
 		currentLanguage: state.language,
 		showMenu: state.showMenu,
-		currentSectionId
+		currentSectionId,
+		sectionInfo
 	}
 }
 

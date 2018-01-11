@@ -66,23 +66,7 @@ body {
 .contentContainer {
 	opacity: 1;
 	transition: opacity 0.5s;
-    min-height: calc(100vh - 210px);
-    /*background-color: #fff;*/
-}
-.fader {
-	display: none;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #fff;
-	transition: opacity 0.5s;
-}
-.isNavigating .fader {
-	opacity: 1;
-	z-index: 1;
+    min-height: calc(100vh - 140px);
 }
 
 img {

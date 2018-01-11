@@ -60,7 +60,8 @@ header.fix {
 	top: 0;
 	background-color: rgba(255,255,255,1);
 }
-header.fix h1 {
+header.fix h1,
+header.fix h3  {
 	opacity: 1;
 }
 header.fix .navigation ul {
@@ -78,7 +79,7 @@ header.fix .navigation ul {
 .navigation ul.links {
 	max-width: 800px;
 	width: calc(100% - 330px);
-    margin-left: calc(13% + 115px);
+	margin: auto;
 }
 .navigation ul.language {
 	position: absolute;
@@ -129,6 +130,17 @@ header .menu.show .button div {
 	transform: rotateZ(45deg);
 }
 
+.mobileSectionHeader {
+	display: none;
+	opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 11px;
+    position: absolute;
+    height: 50px;
+    line-height: 50px;
+    left: 160px;
+}
+
 @media (max-width: 800px) {
 
 	header {
@@ -143,9 +155,6 @@ header .menu.show .button div {
 	}
 
 	.navigation {
-		opacity: 0;
-		transform: translateY(100%) scale(0.9);
-		transition: all 0.3s;
 		width: 100%;
 		height: 100vh;
 		position: fixed;
@@ -155,7 +164,7 @@ header .menu.show .button div {
 		text-align: center;
 		background: rgba(0,0,0,0.95);
 		padding: 20% 10%;
-		display: block;
+		display: none;
 	}
 	header .navigation.navigation li {
 		width: auto;
@@ -184,9 +193,12 @@ header .menu.show .button div {
 		justify-content: center;
 	}
 
+	.mobileSectionHeader {
+		display: block;
+	}
+
 	/*show state*/
 	.menu.show .navigation {
-	    transform: translateY(0) scale(1);
-	    opacity: 1;
+		display: block;
 	}
 }

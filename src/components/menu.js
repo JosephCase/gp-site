@@ -9,7 +9,7 @@ const Menu = ({links, currentLanguage, currentSectionId, setLanguage, showMenu, 
 		    <div></div>
 		</div>
 		<div className='navigation'>
-			<ul>
+			<ul className='links'>
 			{
 				links.map((link) => {
 					let className = currentSectionId === link.id ? 'active' : '';

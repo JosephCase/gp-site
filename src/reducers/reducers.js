@@ -62,10 +62,12 @@ function language(state = 'eng', action) {
 	}
 }
 
-function showMenu(state = true, action) {
+function showMenu(state = false, action) {
 	switch(action.type) {
 		case TOGGLE_SHOWHIDE_MENU:
 			return !state
+		case CHANGE_PAGE_START:
+			return false
 		default:
 			return state
 	}	

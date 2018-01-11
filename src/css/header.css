@@ -1,6 +1,6 @@
 header {
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 	padding: 0 4px;
 	box-sizing: border-box;
 	opacity: 1;
@@ -26,14 +26,14 @@ header h1 {
 
 
 header .button {
-    position: relative;
-    z-index: 2;
-    float: right;
-    width: 26px;
-    margin-top: 10px;
-    height: 30px;
-    cursor: pointer;
-    display: none;
+	position: absolute;
+	right: calc(1% + 5px);
+	z-index: 2;
+	width: 26px;
+	margin-top: 10px;
+	cursor: pointer;
+	display: none;
+
 }
 
 header .button div {
@@ -47,9 +47,7 @@ header .button div {
     height: 50px;
     color: #000;
     top: 0;    
-    /*padding: 40px 20px 0;*/
     right: 0;
-    transform: translateX(100%);
     transition: transform 0.2s;
     box-sizing: border-box;
     display: flex;
@@ -72,11 +70,15 @@ header.fix .navigation ul {
 .navigation ul {
 	color: #fff;
     transition: color 0.2s;
-	width: 800px;
-	margin: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+}
+
+.navigation ul.links {
+	max-width: 800px;
+	width: calc(100% - 330px);
+    margin-left: calc(13% + 115px);
 }
 .navigation ul.language {
 	position: absolute;
@@ -106,16 +108,15 @@ header.fix .navigation ul {
 .navigation a {
 	display: block;
 }
-
-.menu.show .navigation {
-    transform: translateX(0);	
+.menu .button div {
+	background-color: #fff;
 }
-
-.menu.show .button div {
-	/*background-color: #fff;*/
-	/*transform: rotateZ(45deg);*/
+header.fix .menu .button div {
+	background-color: #000;
 }
-
+header .menu.show .button div {
+	background-color: #fff;
+}
 .menu.show .button div:nth-of-type(1) {
 	margin-top: 14px;
 	transform: rotateZ(-45deg);
@@ -128,14 +129,64 @@ header.fix .navigation ul {
 	transform: rotateZ(45deg);
 }
 
+@media (max-width: 800px) {
 
-@media (max-width: 500px) {
+	header {
+		height: 50px;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+	header h1 {
+		left: calc(1% + 5px);
+	}
+
 	.navigation {
+		opacity: 0;
+		transform: translateY(100%) scale(0.9);
+		transition: all 0.3s;
 		width: 100%;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
 		padding-left: 60px;
 		text-align: center;
+		background: rgba(0,0,0,0.95);
+		padding: 20% 10%;
+		display: block;
 	}
-	.navigation li {
+	header .navigation.navigation li {
 		width: auto;
+		color: #fff;
+		padding: 10px;
+		font-size: 18px;
+	}
+	header .button {
+	    display: block;
+	}
+
+	header .navigation.navigation ul {
+		display: flex;
+		margin: 0;
+		position: static;
+		text-align: center;
+		width: 100%;
+	}
+
+	header .navigation ul.links {
+		height: 70%;
+		flex-direction: column;
+	}
+	header .navigation ul.language {
+		height: 30%;
+		justify-content: center;
+	}
+
+	/*show state*/
+	.menu.show .navigation {
+	    transform: translateY(0) scale(1);
+	    opacity: 1;
 	}
 }

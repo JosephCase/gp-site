@@ -102,7 +102,7 @@
 	width: 47%;
 	padding-top: 47%;
 	border-radius: 50%;
-	z-index: 1; /* hack: allows border radius to be applied before image load*/;
+	z-index: 1; /* hack: allows border radius to be applied before image load*/
 }
 .App[data-path="/images"] .pages a img{	
 	border-radius: 50%; /*safari fix */

@@ -11,7 +11,7 @@
 	padding-top: 22%;
 	overflow: hidden;
 	transform: scale(0.95);
-	transition: transform 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
 }
 .pages a:nth-of-type(3n - 2) {	
 	margin-left: 4px;	
@@ -88,6 +88,11 @@
 	.pages a:nth-of-type(2n) {	
 		margin-right: 4px;	
 	}
+}
+
+.App.isNavigating .pages a {
+	opacity: 0;
+	transform: scale(0.8);
 }
 
 /*__URL SPECIFIC__*/

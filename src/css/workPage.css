@@ -1,6 +1,14 @@
 .background {
 	background-color: #fff;
+	transition: all 0.3s;
+	transform-origin: 50% 50vh;
 }
+
+.App.isNavigating .background {
+	transform: scale(0.95);
+	opacity: 0;
+}
+
 .content {
 	padding-top: 80px;
 	max-width: 130vh;

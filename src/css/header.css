@@ -8,6 +8,7 @@ header {
     top: calc(100vh - 50px);
 	background-color: rgba(255,255,255,0);
 	transition: background-color 0.2s;
+	transform: translateZ(0);
 }
 
 header h1 {

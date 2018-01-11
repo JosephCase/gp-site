@@ -4,7 +4,8 @@ header {
 	padding: 0 4px;
 	box-sizing: border-box;
 	opacity: 1;
-    position: relative;
+    position: absolute;
+    top: calc(100vh - 50px);
 	background-color: rgba(255,255,255,0);
 	transition: background-color 0.2s;
 }
@@ -54,16 +55,16 @@ header .button div {
     width: 100%;
 }
 
-.fix header {
+header.fix {
 	position: fixed;
 	z-index: 10;
 	top: 0;
 	background-color: rgba(255,255,255,1);
 }
-.fix header h1 {
+header.fix h1 {
 	opacity: 1;
 }
-.fix .navigation ul {
+header.fix .navigation ul {
 	color: #000;
 }
 

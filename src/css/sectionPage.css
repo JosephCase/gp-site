@@ -49,10 +49,10 @@
 .pages a:hover {
 	transform: scale(1);
 }
-.pages a:hover img {	
+.pages a:hover img.loaded {	
 	opacity: 1;
 }
-.pages a:hover .overlay {	
+.pages a:hover img.loaded + .overlay {	
 	opacity: 0;
 }
 

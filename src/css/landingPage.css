@@ -1,5 +1,5 @@
 .landingPage h1 {
-	height: calc(100vh - 50px);
+	height: 100vh;
 	line-height: calc(100vh - 50px);
 	letter-spacing: -1px;
     font-size: 12vw;

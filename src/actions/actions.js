@@ -104,10 +104,3 @@ export function showHideMenu() {
 		type: TOGGLE_SHOWHIDE_MENU
 	}
 }
-
-export function fixHeader(fix) {
-	return {
-		type: FIX_HEADER,
-		fix
-	}
-}

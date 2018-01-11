@@ -5,8 +5,7 @@ import {
 	CHANGE_PAGE,
 	TOGGLE_SHOWHIDE_MENU,
 	CHANGE_PAGE_START,
-	PAGE_NOT_FOUND,
-	FIX_HEADER
+	PAGE_NOT_FOUND
 } from '../actions/actions.js';
 
 
@@ -72,15 +71,6 @@ function showMenu(state = true, action) {
 	}	
 }
 
-function headerFixed(state = false, action) {
-	switch(action.type) {
-		case FIX_HEADER:
-			return action.fix
-		default:
-			return state
-	}
-}
-
 export default combineReducers({
-	navigation, activePage, pages, language, showMenu, headerFixed
+	navigation, activePage, pages, language, showMenu
 })

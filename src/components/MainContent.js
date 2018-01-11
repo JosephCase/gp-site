@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import Header from '../containers/Header.js';
+import Header from './Header.js';
 import Footer from './Footer.js';
 import PageContent from './PageContent.js';
 import SectionContent from './SectionContent.js';
@@ -10,13 +10,10 @@ import PageNotFound from './PageNotFound.js';
 
 const MainContent = (props) => {
 
-	console.log(props);
-
-	let {error, type, pages, content, pageChanging, path, headerFixed} = props;
+	let {error, type, pages, content, pageChanging, path} = props;
 
 	const classes = ['App'];
 	classes.push(pageChanging ? 'isNavigating' : '');
-	classes.push(headerFixed ? 'fix' : '');
 
 	var activeContent;
 	if(error) {

@@ -74,6 +74,9 @@
 		padding-top: 31.33%;
 		width: calc((100% - 12px) / 2);
 	}
+	.pages a img {
+		opacity: 0.5;
+	}
 	.pages a:nth-of-type(3n - 2) {	
 		margin-left: 2px;	
 	}
@@ -85,6 +88,12 @@
 	}
 	.pages a:nth-of-type(2n) {	
 		margin-right: 4px;	
+	}
+}
+
+@media (max-width: 500px) {
+	.pages a .overlay p {
+		font-size: 12px;
 	}
 }
 

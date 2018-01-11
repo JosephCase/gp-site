@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import { Link } from 'react-router-dom';
 
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -51,10 +51,9 @@ class MainContent extends PureComponent {
 				<div className='loader'></div>
 				<div className='landingPage'>
 					<video autoPlay='true' loop='true'>
-						<source src='http://www.giusypirrotta.com/content/file_241.webm' type='video/webm' />
-						<source src='http://www.giusypirrotta.com/content/file_241.mp4' type='video/mp4' />
+						<source src='/public/showreel.mp4' type='video/mp4' />
 					</video>
-					<h1>Giusy Pirrotta</h1>
+					<h1><Link to='/'>Giusy Pirrotta</Link></h1>
 				</div>
 		        <Header />
 		        <div className='contentContainer'>
@@ -68,3 +67,4 @@ class MainContent extends PureComponent {
 }
 
 export default MainContent;
+						// <source src='http://www.giusypirrotta.com/content/file_241.webm' type='video/webm' />

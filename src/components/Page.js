@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import config from '../config.js';
 
 const contentHost = config.contentHost;
 const imageSizes = config.imageSizes;
 
-class Page extends Component {	
+class Page extends PureComponent {	
 	constructor(props) {
 		super(props);
 
@@ -22,7 +22,7 @@ class Page extends Component {
 
 	showImages() {
 		let rootElem = ReactDOM.findDOMNode(this);
-		this.images = rootElem.getElementsByTagName('img');
+		this.images = document.querySelectorAll("img:not(.loaded)");
 		if(this.images.length != 0) {
 			this.showImage(0); // show the first image
 		}

@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 config/config.js
+
+*.mp4
+*.webm

@@ -1,3 +1,5 @@
+import scroll from 'scroll';
+
 export const RECIEVE_ENTIRE_STATE = 'RECIEVE_ENTIRE_STATE';
 export const CHANGE_PAGE_START = 'CHANGE_PAGE_START';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
@@ -37,12 +39,10 @@ export function navigate(path) {
 
 		if(window) {
 			var doc = document.documentElement;
-			let top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-			if(top < (window.innerHeight - 50)) {
-				window.scroll({
-					top: (window.innerHeight - 50),
-					behavior: 'smooth' 
-				})
+			let top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+			if(top < (window.innerHeight - 50)) {				
+				scroll.top(document.documentElement, window.innerHeight - 50);	
+				scroll.top(document.body, window.innerHeight - 50);
 			}
 		}
 

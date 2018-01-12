@@ -15,7 +15,8 @@
     "redux-thunk": "^2.2.0",
     "remark-breaks": "^1.0.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "scroll": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

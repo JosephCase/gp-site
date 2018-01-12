@@ -25,6 +25,10 @@
 	width: 98%;
 }
 
+.content img {
+	transform: rotateZ(360deg);
+}
+
 .content h1, 
 .content h2, 
 .content h3, 

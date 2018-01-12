@@ -37,7 +37,6 @@ const store = createStore(
 function historyListener(location) {
 	let newPath = location.pathname === '/' ? HOMEPATH : location.pathname;
 	store.dispatch(navigate(newPath));
-	console.log(store.getState());
 }
 
 const history = createHistory();

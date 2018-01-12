@@ -36,8 +36,6 @@ class PageContent extends Page {
 
 const Text = ({content, size}) => {
 	content = content.replace(/#(?!#)/g, '# ');
-	// (?!.*bar)
-	// content = content.replace('#', '# ');
 	return(
 		<div className={`text s${size}`}>
 			<Markdown source={content} plugins={[breaks]} />

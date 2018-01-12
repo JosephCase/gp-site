@@ -12,7 +12,7 @@ class MainContent extends PureComponent {
 
 	constructor(props) {
 		super(props);
-		this.state = { isNavigating: true };
+		this.state = { isNavigating: false };
 	}
 
 	componentDidUpdate() {
@@ -50,7 +50,7 @@ class MainContent extends PureComponent {
 			<div className={classes.join(' ')} data-path={path}>
 				<div className='loader'></div>
 				<div className='landingPage'>
-					<video autoPlay='true' loop='true'>
+					<video autoPlay='true' loop='true' muted='true'>
 						<source src='/public/showreel.mp4' type='video/mp4' />
 					</video>
 					<h1><Link to='/'>Giusy Pirrotta</Link></h1>
@@ -60,7 +60,6 @@ class MainContent extends PureComponent {
 					{ activeContent }
 		        </div>
 		        <Footer />
-				<div className='fader'></div>
 	     	</div>
 		)
 	}

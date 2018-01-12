@@ -40,8 +40,7 @@ export function navigate(path) {
 			let top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 			if(top < (window.innerHeight - 50)) {
 				window.scroll({
-					top: (window.innerHeight - 50), 
-					left: 0, 
+					top: (window.innerHeight - 50),
 					behavior: 'smooth' 
 				})
 			}
@@ -53,9 +52,7 @@ export function navigate(path) {
 
 			setTimeout(() => {
 				if(window) {
-					window.scroll({
-						top: (window.innerHeight - 50)
-					})
+					window.scroll(0, window.innerHeight - 50);
 				}
 				if(pageExists(getState(), path)) {
 					return dispatch(changePage(path));

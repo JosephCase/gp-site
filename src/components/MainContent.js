@@ -51,6 +51,7 @@ class MainContent extends PureComponent {
 				<div className='loader'></div>
 				<div className='landingPage'>
 					<video autoPlay='true' loop='true' muted='true'>
+						<source src='/public/showreel.webm' type='video/webm' />
 						<source src='/public/showreel.mp4' type='video/mp4' />
 					</video>
 					<h1><Link to='/'>Giusy Pirrotta</Link></h1>
@@ -66,4 +67,3 @@ class MainContent extends PureComponent {
 }
 
 export default MainContent;
-						// <source src='http://www.giusypirrotta.com/content/file_241.webm' type='video/webm' />

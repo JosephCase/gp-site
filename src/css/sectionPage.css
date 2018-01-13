@@ -24,7 +24,7 @@
 	cursor: pointer;
 }
 
-.pages a img {	
+.contentContainer .pages a img {	
 	width: 100%;
 	min-height: 100%;
 	position: absolute;

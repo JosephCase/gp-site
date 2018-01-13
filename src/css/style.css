@@ -69,11 +69,11 @@ body {
     min-height: calc(100vh - 140px);
 }
 
-img {
+img.lazy {
 	opacity: 0;
 	transition: opacity 1s;
 }
-img.loaded {
+img.lazy.loaded {
 	opacity: 1;
 }
 

@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.landingPage video {
+.landingPage .bgVid {
 	min-width: 100%;
 	min-height: 100%;
     left: 50%;
@@ -23,6 +23,8 @@
     transform: translate(-50%, -50%);
 	position: fixed;
 	z-index: -2;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 @keyframes grow {

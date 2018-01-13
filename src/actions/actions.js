@@ -36,13 +36,13 @@ function recieveState(state) {
 export function navigate(path) {
 
 	return (dispatch, getState) => {
-
+		let height = document.getElementsByClassName('landingPage')[0].clientHeight;
 		if(window) {
 			var doc = document.documentElement;
 			let top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 			if(top < (window.innerHeight - 50)) {				
-				scroll.top(document.documentElement, window.innerHeight - 50);	
-				scroll.top(document.body, window.innerHeight - 50);
+				scroll.top(document.documentElement, height);	
+				scroll.top(document.body, height);
 			}
 		}
 
@@ -52,7 +52,7 @@ export function navigate(path) {
 
 			setTimeout(() => {
 				if(window) {
-					window.scroll(0, window.innerHeight - 50);
+					window.scroll(0, height);
 				}
 				if(pageExists(getState(), path)) {
 					return dispatch(changePage(path));

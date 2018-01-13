@@ -23,7 +23,6 @@
     transform: translate(-50%, -50%);
 	position: fixed;
 	z-index: -2;
-    filter: blur(4px);
 }
 
 @keyframes grow {

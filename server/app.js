@@ -25,7 +25,10 @@ app.get('/api/*', (req, res) => {
 });
 
 app.use((req, res) => {
-	if(req.path !== '/favicon.ico' && !req.xhr) controller.serveBundle(req, res);
+	if(req.path !== '/favicon.ico' && 
+		req.path !== '/public' &&
+		req.path !== '/static' &&
+		!req.xhr) controller.serveBundle(req, res);
 });
 
 module.exports = app;

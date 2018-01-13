@@ -22,7 +22,7 @@ class Page extends PureComponent {
 
 	showImages() {
 		let rootElem = ReactDOM.findDOMNode(this);
-		this.images = document.querySelectorAll("img:not(.loaded)");
+		this.images = document.querySelectorAll("img.lazy:not(.loaded)");
 		if(this.images.length != 0) {
 			this.showImage(0); // show the first image
 		}
@@ -34,6 +34,7 @@ class Page extends PureComponent {
 		let reactClass = this;
 		
 		this.images[i].src = this.chooseSize(this.images[i].getAttribute('data-src'), this.images[i].clientWidth);
+		
 		this.images[i].addEventListener("load", function() {
 			this.className = this.className + ' loaded';
 			if (i < reactClass.images.length - 1) {

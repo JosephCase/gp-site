@@ -4,7 +4,7 @@ class Image extends Component {
 	
 	render() {
 		return (
-			<img data-src={this.props.src} className={this.props.className} alt='' />
+			<img data-src={this.props.src} className={`lazy ${this.props.className}`} alt='' />
 		)
 	}
 

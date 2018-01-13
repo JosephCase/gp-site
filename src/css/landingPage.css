@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.landingPage video {
+.landingPage .bgSeq {
 	min-width: 100%;
 	min-height: 100%;
     left: 50%;

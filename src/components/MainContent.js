@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 
 import Header from './Header.js';
 import Footer from './Footer.js';
 import PageContent from './PageContent.js';
 import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';
+import ImgSeq from './ImgSeq.js';
 
 
 class MainContent extends PureComponent {
@@ -49,14 +49,8 @@ class MainContent extends PureComponent {
 		return (
 			<div className={classes.join(' ')} data-path={path}>
 				<div className='loader'></div>
-				<div className='landingPage'>
-					<video autoPlay='true' loop='true' muted='true'>
-						<source src='/public/showreel.webm' type='video/webm' />
-						<source src='/public/showreel.mp4' type='video/mp4' />
-					</video>
-					<h1><Link to='/'>Giusy Pirrotta</Link></h1>
-				</div>
 		        <Header />
+		        <ImgSeq />
 		        <div className='contentContainer'>
 					{ activeContent }
 		        </div>

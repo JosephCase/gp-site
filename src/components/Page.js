@@ -42,7 +42,7 @@ class Page extends PureComponent {
 			}
 		}, false);
 		this.images[i].addEventListener('error', function() {
-			this.src = '/public/placeholder.gif';
+			this.src = '/placeholder.gif';
 		})
 	}
 

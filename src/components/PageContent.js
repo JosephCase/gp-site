@@ -45,8 +45,8 @@ const Text = ({content, size}) => {
 
 const Video = (props) => (
 	<video autoPlay='true' controls className={`s${props.size}`}>
-		<source src={`${contentHost}${props.content}.webm`} type='video/webm' />
-		<source src={`${contentHost}${props.content}.mp4`} type='video/mp4' />
+		<source src={`${contentHost}/${props.content}.webm`} type='video/webm' />
+		<source src={`${contentHost}/${props.content}.mp4`} type='video/mp4' />
 	</video>
 )
 

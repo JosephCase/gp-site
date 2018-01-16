@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
 });
 
 
-app.use('/', express.static(path.join(global.appRoute, '../build/')));
+app.use('/', express.static(path.join(global.appRoute, '../build/'), {index: false}));
 //app.use('/static', express.static(path.join(global.appRoute, '../build/static/')));
 
 // app.get('/api/navigation', controller.getNavigation);

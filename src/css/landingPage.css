@@ -1,3 +1,4 @@
+
 .landingPage h1 {
 	height: calc(100vh - 50px);
     margin-bottom: 50px;
@@ -23,12 +24,28 @@
     transform: translate(-50%, -50%);
 	position: fixed;
 	z-index: -2;
+}
+
+.landingPage .bgImg {
+    min-width: 100%;
+    min-height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: -2;
     background-size: cover;
     background-position: 50% 50%;
+    animation: fadeIn 3s;
 }
 
 @keyframes grow {
     0% {transform: scale(0.9); opacity: 0;}
     50% {transform: scale(0.9); opacity: 0;}
     100% {transform: scale(1); opacity: 0.8;}
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }

@@ -20,7 +20,7 @@ class InlineVideo extends PureComponent {
 				video.src = null;
 				this.props.onFail();
 			} 
-		},500)		
+		},1000)		
 	}
 
 	render() {

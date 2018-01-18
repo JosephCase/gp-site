@@ -16,6 +16,7 @@ class ImageCarousel extends PureComponent {
 	}
 
 	componentDidMount() {
+		this.windowHeight = window.innerHeight;
 		let { images } = this.props; 
 		let i = Math.floor(Math.random() * images.length);
 		this.setState(Object.assign({}, this.state, {index: i}));
@@ -57,7 +58,7 @@ class ImageCarousel extends PureComponent {
 	render() {
 		if(this.state.index === null) return null;
 		let style = {
-			height: window.innerHeight
+			height: this.windowHeight
 		};
 		let style1 = {
 			backgroundImage: `url(${this.state.d1Image})`,

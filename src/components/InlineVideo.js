@@ -5,21 +5,18 @@ class InlineVideo extends PureComponent {
 	constructor(props) {
 		super(props);
 
-		this.playHandler = this.playHandler.bind(this);
 		this.state = { showVideo: false };		
-	}
-
-	playHandler(e) {
-		this.setState(Object.assign({}, this.state, {showVideo: true}));
 	}
 
 	componentDidMount() {
 		let video = this.video;
 		setTimeout(() => {	//if the video hasn't played yet consider it failed
-			if(!this.state.showVideo) {
+			if(video.currentTime > 0) {
+				this.setState(Object.assign({}, this.state, {showVideo: true}));
+			} else {
 				video.src = null;
-				this.props.onFail();
-			} 
+                        	this.props.onFail();
+			}
 		},1000)		
 	}
 
@@ -34,7 +31,6 @@ class InlineVideo extends PureComponent {
 				muted='true'
 				playsInline='true'
 				webkit-playsinline='true'
-				onPlay={this.playHandler}
 				autoPlay='true'
 			>
 				{children}

@@ -39,8 +39,8 @@ class LandingPage extends PureComponent {
 		} else {
 			background = (
 				<InlineVideo onFail={this.videoFailHandler}>
-					<source src='http://test.giusypirrotta.com/showreel.webm' type='video/webm' />
-					<source src='http://test.giusypirrotta.com/showreel.mp4' type='video/mp4' />	
+					<source src='/showreel.webm' type='video/webm' />
+					<source src='/showreel.mp4' type='video/mp4' />	
 				</InlineVideo>
 			)
 		}

@@ -15,7 +15,14 @@ exports.render = (html, state) => {
 		    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
 		    <meta property='og:image' content='http://www.giusypirrotta.com/shareImg.jpg'/>
-		    <link rel="image_src" href="http://www.giusypirrotta.com/shareImg.jpg" / >
+		    
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:width" content="500">
+		<meta property="og:image:height" content="332">    
+
+		<link rel="image_src" href="http://www.giusypirrotta.com/shareImg.jpg" / >
+		    
+			
 
 		    <meta name="theme-color" content="#000000">
 		    <link rel="manifest" href="/manifest.json">

@@ -6,7 +6,7 @@ import PageContent from './PageContent.js';
 import SectionContent from './SectionContent.js';
 import PageNotFound from './PageNotFound.js';
 import LandingPage from './LandingPage.js';
-
+import GoogleAnalytics from './GoogleAnalytics.js';
 
 class MainContent extends PureComponent {
 
@@ -16,25 +16,23 @@ class MainContent extends PureComponent {
 	}
 
 	componentDidUpdate() {
-		// if(this.state.isNavigating !== this.props.pageChanging) {
-			setTimeout(() => {
-				this.setState({isNavigating: this.props.pageChanging})
-			}, 0)
-		// }
+		setTimeout(() => {
+			this.setState({ isNavigating: this.props.pageChanging })
+		}, 0)
 	}
 
 	render() {
 
-		let {error, type, pages, content, path} = this.props;
+		const { error, type, pages, content, path } = this.props;
 
 		const classes = ['App'];
 		classes.push(this.state.isNavigating ? 'isNavigating' : '');
 
 		var activeContent;
-		if(error) {
+		if (error) {
 			activeContent = <PageNotFound />
 		} else {
-			switch(type) {
+			switch (type) {
 				case 'section':
 					activeContent = <SectionContent pages={pages} />
 					break;
@@ -48,14 +46,15 @@ class MainContent extends PureComponent {
 
 		return (
 			<div className={classes.join(' ')} data-path={path}>
+				<GoogleAnalytics path={path} />
 				<div className='loader'></div>
-		        <LandingPage />
-		        <Header />
-		        <div className='contentContainer'>
-					{ activeContent }
-		        </div>
-		        <Footer />
-	     	</div>
+				<LandingPage />
+				<Header />
+				<div className='contentContainer'>
+					{activeContent}
+				</div>
+				<Footer />
+			</div>
 		)
 	}
 }

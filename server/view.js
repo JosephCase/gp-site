@@ -11,19 +11,27 @@ exports.render = (html, state) => {
 		<html lang="en">
 
 		<head>
-		    <meta charset="utf-8">
-		    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139608339-1"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
 
-		    <meta property='og:image' content='http://www.giusypirrotta.com/shareImg.jpg'/>
+				gtag('config', 'UA-139608339-1');
+			</script>
+
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+			<meta property='og:image' content='http://www.giusypirrotta.com/shareImg.jpg'/>
+				
+			<meta property="og:image:type" content="image/jpeg">
+			<meta property="og:image:width" content="500">
+			<meta property="og:image:height" content="332">    
+
+			<link rel="image_src" href="http://www.giusypirrotta.com/shareImg.jpg" / >
 		    
-		<meta property="og:image:type" content="image/jpeg">
-		<meta property="og:image:width" content="500">
-		<meta property="og:image:height" content="332">    
-
-		<link rel="image_src" href="http://www.giusypirrotta.com/shareImg.jpg" / >
-		    
-			
-
 		    <meta name="theme-color" content="#000000">
 		    <link rel="manifest" href="/manifest.json">
 		    <link rel="shortcut icon" href="/favicon.ico">

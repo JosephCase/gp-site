@@ -1,21 +1,18 @@
 'use strict';
 
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter as Router } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
 
 import reducers from '../src/reducers/reducers.js';
 import ActivePage from '../src/containers/ActivePage.js';
+import config from '../config/config.js';
+import view from './view.js';
+import contentService from './contentService.js';
 
-
-const config = require('../config/config.js');
-const routeHelper = require('./routeHelper.js');
-const view = require('./view.js');
-const contentService = require('./contentService.js');
-
-exports.serveBundle = (req, res) => {
+const serveBundle = (req, res) => {
 
 	const store = createStore(
 		reducers,
@@ -24,13 +21,11 @@ exports.serveBundle = (req, res) => {
 
 	const html = renderToString(
 		<Provider store={store}>
-			<Router>
+			<StaticRouter>
 				<ActivePage />
-			</Router>
+			</StaticRouter>
 		</Provider>
 	)
-
-	console.log(store.getState().activePage);
 
 	res.send(view.render(html, store.getState()));
 
@@ -39,21 +34,14 @@ exports.serveBundle = (req, res) => {
 
 }
 
-function getInitialState(reqPath) {
-	let preloadedState = {
-		activePage: {
-			isFetching: false,
-			path: reqPath === '/' ? config.HOMEPATH : reqPath,
-			error: null
-		},
-		navigation: [],
-		pages: {}
-	}
+const getInitialState = reqPath => ({
+	activePage: {
+		isFetching: false,
+		path: reqPath === '/' ? config.HOMEPATH : reqPath,
+		error: null
+	},
+	navigation: contentService.getNavigation() || [],
+	pages: contentService.getPages() || {}
+})
 
-	preloadedState.navigation = contentService.getNavigation();
-	preloadedState.pages = contentService.getPages();
-
-	return preloadedState;
-}	
-
-exports.getInitialState = getInitialState;
+module.exports = { serveBundle, getInitialState };

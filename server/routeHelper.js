@@ -7,82 +7,57 @@ const config = require('../config/config.js');
 
 const routeHelper = {};
 
-routeHelper.generateRoutes = () => {
+routeHelper.generateRoutes = () => new Promise((resolve, reject) => {
 
-	return new Promise((resolve, reject) => {
+	request.get(`${config.apiHost}/pages`, (err, api_res, body) => {
 
-		request.get(`${config.apiHost}/pages`, (err, api_res, body) => {
+		if (err || api_res.statusCode != 200) {
+			return reject(err || JSON.parse(body).message);
+		}
 
-			if(err || api_res.statusCode != 200) {
-				return reject(err || JSON.parse(body).message);
-			}
+		const pages = JSON.parse(body);
+		const routes = pages.map(page => createRoute(page, pages));
 
-			let routes = [];
+		cache.put('routes', routes);
 
-			let pages = JSON.parse(body);
-			pages.forEach( page => {
+		return resolve();
 
-				let newRoute = createRoute(page);
-
-				let parentName = null;
-				if(page.parentPage_id) {
-					parentName = getPageName(page.parentPage_id, pages);
-				}
-				newRoute.path = createUrl(page.name, parentName);
-
-				routes.push(newRoute);
-			});
-
-			cache.put('routes', routes);
-
-			return resolve();
-
-		})
 	})
-}
+})
 
-routeHelper.getRouteById = (id) => {
-	let route = routeHelper.getAllRoutes().find((route) => {
-		return route.id === id;
-	});
-	if(!route) return false;
+
+routeHelper.getRouteById = id => {
+	const route = routeHelper.getAllRoutes().find(route => route.id === id);
+	if (!route) return false;
 	return route;
 }
 
-routeHelper.getRouteByPath = (path) => {
-	let route = routeHelper.getAllRoutes().find((route) => {
-		return route.path === path;
-	});
-	if(!route) return false;
+routeHelper.getRouteByPath = path => {
+	const route = routeHelper.getAllRoutes().find(route => route.path === path);
+	if (!route) return false;
 	return route;
 }
 
-routeHelper.getAllRoutes = () => {
-	return cache.get('routes');
-}
+routeHelper.getAllRoutes = () => cache.get('routes');
 
+const createRoute = (page, pages) => {
 
-function createRoute(page) {
+	const { parentPage_id } = page;
+
+	const parentName = parentPage_id ? pages.find(page => page.id === parentPage_id).name : null;
+
 	return {
 		id: page.id,
 		type: page.isParent ? config.SECTION : config.PAGE,
 		apiPath: page.links.self,
-		path: null
+		path: createUrl(page.name, parentName)
 	};
 }
 
-function createUrl(pageName, sectionName) {
+const createUrl = (pageName, sectionName) => {
 	let path = '/' + pageName.toLowerCase().replace(/ /g, "-").replace(/'/g, "").replace(/"/g, "");
-	if(sectionName) path = '/' + sectionName.toLowerCase().replace(/ /g, "-").replace(/'/g, "").replace(/"/g, "") + path;
+	if (sectionName) path = '/' + sectionName.toLowerCase().replace(/ /g, "-").replace(/'/g, "").replace(/"/g, "") + path;
 	return path;
-}
-
-function getPageName(id, pages) {
-	let page = pages.find((page) => {
-		return page.id === id;
-	});
-	if(!page) return false;
-	return page.name;
 }
 
 module.exports = routeHelper;

@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => (
 	<footer>
-		<h5>pirrotta.giusy@gmail.co.uk</h5>
-		<p>Copyright © 2018 Giusy Pirrotta</p>
+		<h5>pirrotta.giusy@gmail.com</h5>
+		<p>Copyright © 2020 Giusy Pirrotta</p>
 	</footer>
 )
 
